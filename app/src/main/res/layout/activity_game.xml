@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgapp"
+    android:orientation="vertical"
+    tools:context=".GameActivity">
+
+    <TextView
+        android:id="@+id/textScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/fredokaone"
+        android:textColor="#FFF"
+        android:textSize="0sp"
+        tools:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bgquestion"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textQuestion"
+            android:layout_width="336dp"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6dp"
+            android:fontFamily="@font/fredokaone"
+            android:text="Which Word Represents Three of the Four Photos?"
+            android:textAlignment="center"
+            android:textColor="#332FA2"
+            android:textSize="22sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="5dip"
+        android:paddingBottom="0dip">
+
+        <ImageView
+            android:id="@+id/topLeftImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_weight="0"
+            android:cropToPadding="false"
+            android:scaleType="fitStart" />
+        <!--            android:src="@drawable/rain"-->
+
+        <ImageView
+            android:id="@+id/topRightImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_weight="0"
+            android:scaleType="fitStart" />
+        <!--            android:src="@drawable/water">-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="0dip"
+        android:paddingBottom="5dip">
+
+        <ImageView
+            android:id="@+id/bottomLeftImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_weight="0"
+            android:cropToPadding="false"
+            android:scaleType="fitStart" />
+        <!-- android:src="@drawable/cat" -->
+
+        <ImageView
+            android:id="@+id/bottomRightImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_weight="0"
+            android:scaleType="fitStart" />
+        <!-- android:src="@drawable/dog" -->
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="355dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bgpurple"
+        android:clickable="false"
+        android:focusable="false"
+        android:fontFamily="@font/fredokaone"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#332FA2"
+        android:textSize="32sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="0dip"
+        android:paddingBottom="0dip">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="167dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/fredokaone"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#FFF"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/Hint"
+            android:gravity="right"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/fredokaone"
+            android:text="Hint"
+            android:textColor="#FFF"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/choiceGrid"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexWrap="wrap">
+
+        <TextView
+            android:id="@+id/choice00"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice01"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice02"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice03"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice04"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice05"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice06"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice07"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice08"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            />
+
+        <TextView
+            android:id="@+id/choice09"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bgpink"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="\?"
+            android:textColor="@color/colorPurple"
+            android:textSize="32sp"
+            android:onClick="makeChoice"
+            android:alpha="0"
+            android:layout_marginRight="7dp"
+            />
+    </com.google.android.flexbox.FlexboxLayout>
+
+</LinearLayout>
