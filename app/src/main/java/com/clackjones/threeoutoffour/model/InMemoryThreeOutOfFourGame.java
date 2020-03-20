@@ -142,7 +142,7 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     private void incrementRound() {
-        Round nextRound = roundProvider.getNextRound();
+        Round nextRound = roundProvider.getNextRound(this.currentRoundNumber);
 
         String[] choiceLetters = nextRound.getRandomLetters();
         this.currentChoices = new ArrayList<>(choiceLetters.length);
@@ -159,7 +159,7 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
         this.currTopRightImage = nextRound.getTopRightImage();
 
         int oldRoundNumber = this.currentRoundNumber;
-        this.currentRoundNumber = currentRoundNumber + 1;
+        this.currentRoundNumber = nextRound.getRoundNumber();
         this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, oldRoundNumber, this.currentRoundNumber);
     }
 

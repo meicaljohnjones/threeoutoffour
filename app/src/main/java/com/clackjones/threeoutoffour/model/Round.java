@@ -3,6 +3,8 @@ package com.clackjones.threeoutoffour.model;
 import java.util.Random;
 
 public class Round {
+    private int roundNumber;
+
     //4 images
     private int topLeftImage;
     private int topRightImage;
@@ -14,8 +16,9 @@ public class Round {
     private String[] randomLetters;
 
     //runs when new round object created
-    public Round(int topLeftImage, int topRightImage, int bottomLeftImage, int bottomRightImage,
+    public Round(int roundNumber, int topLeftImage, int topRightImage, int bottomLeftImage, int bottomRightImage,
                  String answer, String[] randomLetters) {
+        this.roundNumber = roundNumber;
         this.topLeftImage = topLeftImage;
         this.topRightImage = topRightImage;
         this.bottomLeftImage = bottomLeftImage;
@@ -74,6 +77,10 @@ public class Round {
 
     public String getAnswer() {
         return this.answer;
+    }
+
+    public int getRoundNumber() {
+        return roundNumber;
     }
 }
 

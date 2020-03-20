@@ -39,10 +39,10 @@ public class InMemoryThreeOutOfFourGameTest {
             }
         };
 
-        Round testRound = new Round(42, 43, 44, 45,
+        Round testRound = new Round(1, 42, 43, 44, 45,
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
-        given(roundProvider.getNextRound()).willReturn(testRound);
+        given(roundProvider.getNextRound(0)).willReturn(testRound);
 
         game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
 
@@ -78,10 +78,10 @@ public class InMemoryThreeOutOfFourGameTest {
 
     @Test
     public void shouldNotIncrementIfInitializeCalledTwice() {
-        Round testRound = new Round(-1, -1, -1, -1,
+        Round testRound = new Round(1, -1, -1, -1, -1,
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
-        given(roundProvider.getNextRound()).willReturn(testRound);
+        given(roundProvider.getNextRound(0)).willReturn(testRound);
 
         // when
         game.initialize();
@@ -121,10 +121,10 @@ public class InMemoryThreeOutOfFourGameTest {
             }
         };
 
-        Round testRound = new Round(42, 43, 44, 45,
+        Round testRound = new Round(1, 42, 43, 44, 45,
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
-        given(roundProvider.getNextRound()).willReturn(testRound);
+        given(roundProvider.getNextRound(0)).willReturn(testRound);
         game.addPropertyChangeListener(ThreeOutOfFourGame.CHOICE_MADE_EVENT, choiceMadeListener);
         game.addPropertyChangeListener(ThreeOutOfFourGame.LETTERS_REMAINING_DECREMENTED_EVENT, lettersRemainingListener);
         game.addPropertyChangeListener(ThreeOutOfFourGame.PROPOSED_ANSWER_CHANGED_EVENT, proposedAnswerChangedListener);
@@ -170,10 +170,10 @@ public class InMemoryThreeOutOfFourGameTest {
             }
         };
 
-        Round testRound = new Round(42, 43, 44, 45,
+        Round testRound = new Round(1, 42, 43, 44, 45,
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
-        given(roundProvider.getNextRound()).willReturn(testRound);
+        given(roundProvider.getNextRound(0)).willReturn(testRound);
 
 
         game.initialize();
@@ -201,11 +201,11 @@ public class InMemoryThreeOutOfFourGameTest {
     @Test
     public void shouldFireIncorrectProposedAnswerEventWhenProposedAnswerCompleteAndIncorrectAndAllGameValuesReset() {
         // given
-        Round testRound = new Round(-1, -1, -1, -1,
+        Round testRound = new Round(1, -1, -1, -1, -1,
                 "a",
                 new String[]{"a", "e", "i", "o", "u"});
 
-        given(roundProvider.getNextRound()).willReturn(testRound);
+        given(roundProvider.getNextRound(0)).willReturn(testRound);
 
         final Boolean[] isWrongAnswerEventFired = {false};
         PropertyChangeListener wrongAnswerEvtListener = new PropertyChangeListener() {
@@ -239,14 +239,15 @@ public class InMemoryThreeOutOfFourGameTest {
     @Test
     public void shouldFireRoundNumberIncrementedEventAndUpdateVariablesWhenProposedAnswerIsCorrect() {
         // given
-        Round testRound1 = new Round(-1, -1, -1, -1,
+        Round testRound1 = new Round(1, -1, -1, -1, -1,
                 "a",
                 new String[]{"a", "e", "i", "o", "u"});
 
-        Round testRound2 = new Round(-2, -2, -2, -2,
+        Round testRound2 = new Round(2, -2, -2, -2, -2,
                 "ee",
                 new String[]{"e", "i", "o", "u", "a", "a"});
-        given(roundProvider.getNextRound()).willReturn(testRound1, testRound2);
+        given(roundProvider.getNextRound(0)).willReturn(testRound1);
+        given(roundProvider.getNextRound(1)).willReturn(testRound2);
 
         final Boolean[] isRoundNumberEventFired = {false};
         PropertyChangeListener propertyChangeListener = new PropertyChangeListener() {
