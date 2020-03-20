@@ -1,8 +1,5 @@
 package com.clackjones.threeoutoffour.model;
 
-import com.clackjones.threeoutoffour.Round;
-import com.clackjones.threeoutoffour.RoundProvider;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;

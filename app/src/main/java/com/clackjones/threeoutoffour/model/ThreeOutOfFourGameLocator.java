@@ -1,7 +1,5 @@
 package com.clackjones.threeoutoffour.model;
 
-import com.clackjones.threeoutoffour.RoundProvider;
-
 public class ThreeOutOfFourGameLocator {
     private static ThreeOutOfFourGameLocator locator;
     private ThreeOutOfFourGame threeOutOfFourGame;
