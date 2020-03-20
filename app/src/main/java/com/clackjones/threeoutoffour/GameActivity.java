@@ -40,6 +40,15 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         updateImages();
         updateGrid();
         updateProposedAnswer();
+        updateRoundNumber();
+    }
+
+    private void updateRoundNumber() {
+        int roundNumber = this.threeOutOfFourGame.getCurrentRoundNumber();
+        String formattedRoundNumber = String.format("Round %2d", roundNumber);
+
+        TextView roundNumberTV = (TextView) findViewById(R.id.textRound);
+        roundNumberTV.setText(formattedRoundNumber);
     }
 
     private void updateLettersRemainingText() {

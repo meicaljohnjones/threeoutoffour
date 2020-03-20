@@ -1,9 +1,6 @@
 package com.clackjones.threeoutoffour.model;
 
 
-import com.clackjones.threeoutoffour.Round;
-import com.clackjones.threeoutoffour.RoundProvider;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

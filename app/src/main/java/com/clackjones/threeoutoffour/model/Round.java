@@ -1,4 +1,4 @@
-package com.clackjones.threeoutoffour;
+package com.clackjones.threeoutoffour.model;
 
 import java.util.Random;
 

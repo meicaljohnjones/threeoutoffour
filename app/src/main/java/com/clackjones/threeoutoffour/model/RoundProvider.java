@@ -1,4 +1,6 @@
-package com.clackjones.threeoutoffour;
+package com.clackjones.threeoutoffour.model;
+
+import com.clackjones.threeoutoffour.R;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -9,15 +9,15 @@
     tools:context=".GameActivity">
 
     <TextView
-        android:id="@+id/textScreen"
+        android:id="@+id/textRound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:fontFamily="@font/fredokaone"
         android:textColor="#FFF"
-        android:textSize="0sp"
-        tools:visibility="invisible" />
+        android:textSize="28sp" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -51,20 +51,18 @@
 
         <ImageView
             android:id="@+id/topLeftImage"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_weight="0"
             android:cropToPadding="false"
             android:scaleType="fitStart" />
-        <!--            android:src="@drawable/rain"-->
 
         <ImageView
             android:id="@+id/topRightImage"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_weight="0"
             android:scaleType="fitStart" />
-        <!--            android:src="@drawable/water">-->
     </LinearLayout>
 
     <LinearLayout
@@ -77,20 +75,18 @@
 
         <ImageView
             android:id="@+id/bottomLeftImage"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_weight="0"
             android:cropToPadding="false"
             android:scaleType="fitStart" />
-        <!-- android:src="@drawable/cat" -->
 
         <ImageView
             android:id="@+id/bottomRightImage"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_weight="0"
             android:scaleType="fitStart" />
-        <!-- android:src="@drawable/dog" -->
     </LinearLayout>
 
     <EditText
@@ -164,7 +160,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             android:layout_marginBottom="7dp"
@@ -181,7 +176,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             android:layout_marginBottom="7dp"
@@ -198,7 +192,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             android:layout_marginBottom="7dp"
@@ -215,7 +208,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             android:layout_marginBottom="7dp"
@@ -232,7 +224,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             android:layout_marginBottom="7dp"
@@ -249,7 +240,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             />
@@ -265,7 +255,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             />
@@ -281,7 +270,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             />
@@ -297,7 +285,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             />
@@ -313,7 +300,6 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:onClick="makeChoice"
             android:alpha="0"
             android:layout_marginRight="7dp"
             />
