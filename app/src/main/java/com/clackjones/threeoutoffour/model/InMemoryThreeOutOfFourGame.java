@@ -8,7 +8,6 @@ import java.util.List;
 public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
     private final RoundProvider roundProvider;
     private final GameState gameState; // Todo: Replace with action to get from GameStatePersister (load/save)
-    private List<ThreeOutOfFourChoice> currentChoices;
     private PropertyChangeSupport propertyChangeSupport;
     private boolean isInitialized;
 
@@ -16,14 +15,8 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
         this.gameState = new GameState(); // Todo: Replace with action to get from GameStatePersister (load/save)
 
         this.roundProvider = roundProvider;
-        this.gameState.setCurrentRoundNumber(0);
         this.isInitialized = false;
         this.propertyChangeSupport = new PropertyChangeSupport(this);
-
-        this.gameState.setCurrTopLeftImage(-1);
-        this.gameState.setCurrTopRightImage(-1);
-        this.gameState.setCurrBottomLeftImage(-1);
-        this.gameState.setCurrBottomRightImage(-1);
     }
 
     @Override
@@ -36,7 +29,7 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public List<ThreeOutOfFourChoice> getChoices() {
-        return this.currentChoices;
+        return this.gameState.getCurrentChoices();
     }
 
     @Override
@@ -46,8 +39,8 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     private int countChoicesMade() {
         int choicesMade = 0;
-        for (ThreeOutOfFourChoice choice: this.currentChoices) {
-            if (choice.isAlreadySelected()) choicesMade += 1;
+        for (ThreeOutOfFourChoice choice: this.gameState.getCurrentChoices()) {
+            if (choice.getIsAlreadySelected()) choicesMade += 1;
         }
 
         return choicesMade;
@@ -85,13 +78,13 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void makeChoice(ThreeOutOfFourChoice choice) {
-        if (choice.isAlreadySelected()) {
+        if (choice.getIsAlreadySelected()) {
             return;
         }
 
         String oldProposedAnswer = this.gameState.getCurrentProposedAnswer();
         int oldLettersRemainingVal = this.getLettersRemaining();
-        int choiceIndex = currentChoices.indexOf(choice);
+        int choiceIndex = this.gameState.getCurrentChoices().indexOf(choice);
         ThreeOutOfFourChoice choiceOldValue = choice.clone();
 
         choice.select();
@@ -116,7 +109,7 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void makeChoice(int choiceIdx) {
-        ThreeOutOfFourChoice choice = this.currentChoices.get(choiceIdx);
+        ThreeOutOfFourChoice choice = this.gameState.getCurrentChoices().get(choiceIdx);
 
         this.makeChoice(choice);
     }
@@ -126,7 +119,7 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     private void resetChoices() {
-        for (ThreeOutOfFourChoice choice : this.currentChoices) {
+        for (ThreeOutOfFourChoice choice : this.gameState.getCurrentChoices()) {
             choice.reset();
         }
     }
@@ -139,10 +132,11 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
         Round nextRound = roundProvider.getNextRound(this.getCurrentRoundNumber());
 
         String[] choiceLetters = nextRound.getRandomLetters();
-        this.currentChoices = new ArrayList<>(choiceLetters.length);
+        List<ThreeOutOfFourChoice> choices = new ArrayList<>(choiceLetters.length);
         for (String letter : choiceLetters) {
-            this.currentChoices.add(new ThreeOutOfFourChoice(letter));
+            choices.add(new ThreeOutOfFourChoice(letter));
         }
+        this.gameState.setCurrentChoices(choices);
 
         resetProposedAnswer();
         this.gameState.setCurrentAnswer(nextRound.getAnswer());

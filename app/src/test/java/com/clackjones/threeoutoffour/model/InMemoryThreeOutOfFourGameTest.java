@@ -53,13 +53,13 @@ public class InMemoryThreeOutOfFourGameTest {
         assertThat(game.getChoices().size(), equalTo(5));
         List<ThreeOutOfFourChoice> choices = game.getChoices();
 
-        assertThat(choices.get(0).isAlreadySelected(), equalTo(false));
+        assertThat(choices.get(0).getIsAlreadySelected(), equalTo(false));
         assertThat(choices.get(0).getValue(), equalTo("a"));
 
-        assertThat(choices.get(2).isAlreadySelected(), equalTo(false));
+        assertThat(choices.get(2).getIsAlreadySelected(), equalTo(false));
         assertThat(choices.get(2).getValue(), equalTo("i"));
 
-        assertThat(choices.get(4).isAlreadySelected(), equalTo(false));
+        assertThat(choices.get(4).getIsAlreadySelected(), equalTo(false));
         assertThat(choices.get(4).getValue(), equalTo("u"));
 
         assertThat(game.getProposedAnswer(), equalTo(""));
@@ -141,7 +141,7 @@ public class InMemoryThreeOutOfFourGameTest {
         // check choice state changed
         ThreeOutOfFourChoice updatedChoice = game.getChoices().get(1);
         assertThat(choiceIndex[0], equalTo(1));
-        assertThat(updatedChoice.isAlreadySelected(), equalTo(true));
+        assertThat(updatedChoice.getIsAlreadySelected(), equalTo(true));
         assertThat(game.getLettersRemaining(), equalTo(2));
 
         assertThat(game.getProposedAnswer(), equalTo(choice.getValue()));
@@ -192,7 +192,7 @@ public class InMemoryThreeOutOfFourGameTest {
 
         // check choice state changed
         ThreeOutOfFourChoice updatedChoice = game.getChoices().get(1);
-        assertThat(updatedChoice.isAlreadySelected(), equalTo(true));
+        assertThat(updatedChoice.getIsAlreadySelected(), equalTo(true));
         assertThat(game.getLettersRemaining(), equalTo(2));
     }
 
@@ -226,7 +226,7 @@ public class InMemoryThreeOutOfFourGameTest {
 
         // all choices deselected
         for (ThreeOutOfFourChoice choice: game.getChoices()) {
-            assertThat(choice.isAlreadySelected(), equalTo(false));
+            assertThat(choice.getIsAlreadySelected(), equalTo(false));
         }
 
         assertThat(game.getLettersRemaining(), equalTo(1));
@@ -274,7 +274,7 @@ public class InMemoryThreeOutOfFourGameTest {
         assertThat(game.getChoices().size(), equalTo(6));
         assertThat(game.getChoices().get(0).getValue(), equalTo("e"));
         for (ThreeOutOfFourChoice choice: game.getChoices()) {
-            assertThat(choice.isAlreadySelected(), equalTo(false));
+            assertThat(choice.getIsAlreadySelected(), equalTo(false));
         }
 
         assertThat(game.getLettersRemaining(), equalTo(2));

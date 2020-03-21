@@ -87,7 +87,7 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void setUpChoiceButton(TextView choiceNBtn, final ThreeOutOfFourChoice choice) {
         choiceNBtn.setText(choice.getValue());
-        boolean isVisible = !choice.isAlreadySelected();
+        boolean isVisible = !choice.getIsAlreadySelected();
         if (isVisible) {
             choiceNBtn.animate().alpha(OPAQUE).setDuration(300);
             choiceNBtn.setEnabled(true);

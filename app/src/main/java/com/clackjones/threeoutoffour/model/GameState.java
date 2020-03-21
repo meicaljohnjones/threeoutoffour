@@ -1,5 +1,8 @@
 package com.clackjones.threeoutoffour.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameState implements java.io.Serializable {
     private String currentProposedAnswer;
     private int currentRoundNumber;
@@ -11,8 +14,20 @@ public class GameState implements java.io.Serializable {
     private int currBottomLeftImage;
     private int currBottomRightImage;
 
-    public GameState() {
+    private List<ThreeOutOfFourChoice> currentChoices;
 
+    public GameState() {
+        currentRoundNumber = 0;
+
+        currentAnswer = "";
+        currentProposedAnswer = "";
+
+        currTopLeftImage = -1;
+        currTopRightImage = -1;
+        currBottomLeftImage = -1;
+        currBottomRightImage = -1;
+
+        currentChoices = new ArrayList<>();
     }
 
     public String getCurrentProposedAnswer() {
@@ -69,5 +84,13 @@ public class GameState implements java.io.Serializable {
 
     public void setCurrBottomRightImage(int currBottomRightImage) {
         this.currBottomRightImage = currBottomRightImage;
+    }
+
+    public List<ThreeOutOfFourChoice> getCurrentChoices() {
+        return currentChoices;
+    }
+
+    public void setCurrentChoices(List<ThreeOutOfFourChoice> currentChoices) {
+        this.currentChoices = currentChoices;
     }
 }
