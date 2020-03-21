@@ -1,6 +1,8 @@
 package com.clackjones.threeoutoffour.model;
 
 
+import com.clackjones.threeoutoffour.state.GameStateProvider;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,12 +22,15 @@ import java.util.List;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class InMemoryThreeOutOfFourGameTest {
+public class EventFiringThreeOutOfFourGameTest {
+    @Mock
+    GameStateProvider gameStateProvider;
+
     @Mock
     RoundProvider roundProvider;
 
     @InjectMocks
-    InMemoryThreeOutOfFourGame game;
+    EventFiringThreeOutOfFourGame game;
 
     @Test
     public void shouldGetListOfChoicesAndAnswerAndEmptyProposedAnswerOnInitializeAndRoundNumberIncrementedEvent() {
@@ -43,6 +48,7 @@ public class InMemoryThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
+        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
 
         game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
 
@@ -81,6 +87,8 @@ public class InMemoryThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
+        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+
 
         // when
         game.initialize();
@@ -124,6 +132,8 @@ public class InMemoryThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
+        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+
         game.addPropertyChangeListener(ThreeOutOfFourGame.CHOICE_MADE_EVENT, choiceMadeListener);
         game.addPropertyChangeListener(ThreeOutOfFourGame.LETTERS_REMAINING_DECREMENTED_EVENT, lettersRemainingListener);
         game.addPropertyChangeListener(ThreeOutOfFourGame.PROPOSED_ANSWER_CHANGED_EVENT, proposedAnswerChangedListener);
@@ -173,6 +183,7 @@ public class InMemoryThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
+        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
 
 
         game.initialize();
@@ -205,6 +216,7 @@ public class InMemoryThreeOutOfFourGameTest {
                 new String[]{"a", "e", "i", "o", "u"});
 
         given(roundProvider.getNextRound(0)).willReturn(testRound);
+        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
 
         final Boolean[] isWrongAnswerEventFired = {false};
         PropertyChangeListener wrongAnswerEvtListener = new PropertyChangeListener() {
@@ -247,6 +259,7 @@ public class InMemoryThreeOutOfFourGameTest {
                 new String[]{"e", "i", "o", "u", "a", "a"});
         given(roundProvider.getNextRound(0)).willReturn(testRound1);
         given(roundProvider.getNextRound(1)).willReturn(testRound2);
+        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
 
         final Boolean[] isRoundNumberEventFired = {false};
         PropertyChangeListener propertyChangeListener = new PropertyChangeListener() {

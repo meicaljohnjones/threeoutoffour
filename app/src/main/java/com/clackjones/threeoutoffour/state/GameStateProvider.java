@@ -2,7 +2,7 @@ package com.clackjones.threeoutoffour.state;
 
 import com.clackjones.threeoutoffour.model.GameState;
 
-interface GameStatePersistence {
+public interface GameStateProvider {
     void saveGameState(GameState gameState);
-    GameState loadGameState();
+    GameState loadGameStateOrCreateNew();
 }

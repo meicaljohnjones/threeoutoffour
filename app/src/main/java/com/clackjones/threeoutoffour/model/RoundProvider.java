@@ -13,7 +13,7 @@ public class RoundProvider {
 
     }
 
-    public static RoundProvider get() {
+    public static RoundProvider getInstance() {
         if (RoundProvider.roundProvider == null) {
             RoundProvider.roundProvider = new RoundProvider();
             RoundProvider.roundProvider.initialize();

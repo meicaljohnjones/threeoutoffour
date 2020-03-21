@@ -1,11 +1,13 @@
 package com.clackjones.threeoutoffour.model;
 
+import com.clackjones.threeoutoffour.state.SerializableGameStateProvider;
+
 public class ThreeOutOfFourGameLocator {
     private static ThreeOutOfFourGameLocator locator;
     private ThreeOutOfFourGame threeOutOfFourGame;
 
     private ThreeOutOfFourGameLocator() {
-        threeOutOfFourGame = new InMemoryThreeOutOfFourGame(RoundProvider.get());
+        threeOutOfFourGame = new EventFiringThreeOutOfFourGame(RoundProvider.getInstance(), SerializableGameStateProvider.getInstance());
     }
 
     public static ThreeOutOfFourGameLocator getInstance() {

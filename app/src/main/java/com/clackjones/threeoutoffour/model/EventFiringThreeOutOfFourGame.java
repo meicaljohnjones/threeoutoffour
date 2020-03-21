@@ -1,28 +1,36 @@
 package com.clackjones.threeoutoffour.model;
 
+import com.clackjones.threeoutoffour.state.GameStateProvider;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
+public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
+    final GameStateProvider gameStateProvider;
+
     private final RoundProvider roundProvider;
-    private final GameState gameState; // Todo: Replace with action to get from GameStatePersister (load/save)
+    private GameState gameState;
     private PropertyChangeSupport propertyChangeSupport;
     private boolean isInitialized;
 
-    public InMemoryThreeOutOfFourGame(RoundProvider roundProvider) {
-        this.gameState = new GameState(); // Todo: Replace with action to get from GameStatePersister (load/save)
-
+    public EventFiringThreeOutOfFourGame(RoundProvider roundProvider, GameStateProvider gameStateProvider) {
+        this.gameStateProvider = gameStateProvider;
         this.roundProvider = roundProvider;
-        this.isInitialized = false;
         this.propertyChangeSupport = new PropertyChangeSupport(this);
+        this.isInitialized = false;
     }
 
     @Override
     public void initialize() {
         if (!this.isInitialized) {
-            incrementRound();
+            this.gameState = gameStateProvider.loadGameStateOrCreateNew();
+            boolean isNewGame = this.gameState.getCurrentRoundNumber() == 0;
+
+            if (isNewGame) {
+                incrementRound();
+            }
             this.isInitialized = true;
         }
     }
