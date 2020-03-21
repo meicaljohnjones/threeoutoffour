@@ -7,29 +7,23 @@ import java.util.List;
 
 public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
     private final RoundProvider roundProvider;
-    private String currentProposedAnswer;
-    String answer;
+    private final GameState gameState; // Todo: Replace with action to get from GameStatePersister (load/save)
     private List<ThreeOutOfFourChoice> currentChoices;
-    private int currentRoundNumber;
     private PropertyChangeSupport propertyChangeSupport;
     private boolean isInitialized;
 
-    //4 images
-    private int currTopLeftImage;
-    private int currTopRightImage;
-    private int currBottomLeftImage;
-    private int currBottomRightImage;
-
     public InMemoryThreeOutOfFourGame(RoundProvider roundProvider) {
+        this.gameState = new GameState(); // Todo: Replace with action to get from GameStatePersister (load/save)
+
         this.roundProvider = roundProvider;
-        currentRoundNumber = 0;
+        this.gameState.setCurrentRoundNumber(0);
         this.isInitialized = false;
         this.propertyChangeSupport = new PropertyChangeSupport(this);
 
-        this.currTopLeftImage = -1;
-        this.currTopRightImage = -1;
-        this.currBottomLeftImage = -1;
-        this.currBottomRightImage = -1;
+        this.gameState.setCurrTopLeftImage(-1);
+        this.gameState.setCurrTopRightImage(-1);
+        this.gameState.setCurrBottomLeftImage(-1);
+        this.gameState.setCurrBottomRightImage(-1);
     }
 
     @Override
@@ -47,7 +41,7 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public int getLettersRemaining() {
-        return this.answer.length() - this.countChoicesMade();
+        return this.gameState.getCurrentAnswer().length() - this.countChoicesMade();
     }
 
     private int countChoicesMade() {
@@ -61,32 +55,32 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public int getCurrentRoundNumber() {
-        return this.currentRoundNumber;
+        return this.gameState.getCurrentRoundNumber();
     }
 
     @Override
     public String getProposedAnswer() {
-        return this.currentProposedAnswer;
+        return this.gameState.getCurrentProposedAnswer();
     }
 
     @Override
     public int getCurrTopLeftImage() {
-        return currTopLeftImage;
+        return this.gameState.getCurrTopLeftImage();
     }
 
     @Override
     public int getCurrTopRightImage() {
-        return currTopRightImage;
+        return this.gameState.getCurrTopRightImage();
     }
 
     @Override
     public int getCurrBottomLeftImage() {
-        return currBottomLeftImage;
+        return this.gameState.getCurrBottomLeftImage();
     }
 
     @Override
     public int getCurrBottomRightImage() {
-        return currBottomRightImage;
+        return this.gameState.getCurrBottomRightImage();
     }
 
     @Override
@@ -95,18 +89,18 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
             return;
         }
 
-        String oldProposedAnswer = this.currentProposedAnswer;
+        String oldProposedAnswer = this.gameState.getCurrentProposedAnswer();
         int oldLettersRemainingVal = this.getLettersRemaining();
         int choiceIndex = currentChoices.indexOf(choice);
         ThreeOutOfFourChoice choiceOldValue = choice.clone();
 
         choice.select();
-        this.currentProposedAnswer = this.currentProposedAnswer + choice.getValue();
+        this.gameState.setCurrentProposedAnswer(oldProposedAnswer + choice.getValue());
         int newLettersRemainingVal = this.getLettersRemaining();
 
         this.propertyChangeSupport.fireIndexedPropertyChange(ThreeOutOfFourGame.CHOICE_MADE_EVENT, choiceIndex, choiceOldValue, choice);
         this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.LETTERS_REMAINING_DECREMENTED_EVENT, oldLettersRemainingVal, newLettersRemainingVal);
-        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.PROPOSED_ANSWER_CHANGED_EVENT, oldProposedAnswer, currentProposedAnswer);
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.PROPOSED_ANSWER_CHANGED_EVENT, oldProposedAnswer, this.gameState.getCurrentProposedAnswer());
 
         boolean isEnoughLettersToMakeGuess = this.getLettersRemaining() == 0;
         if (isEnoughLettersToMakeGuess) {
@@ -128,7 +122,7 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     private boolean isProposedAnswerCorrect() {
-        return this.currentProposedAnswer.equals(this.answer);
+        return this.gameState.getCurrentProposedAnswer().equals(this.gameState.getCurrentAnswer());
     }
 
     private void resetChoices() {
@@ -138,11 +132,11 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     private void resetProposedAnswer() {
-        this.currentProposedAnswer = "";
+        this.gameState.setCurrentProposedAnswer("");
     }
 
     private void incrementRound() {
-        Round nextRound = roundProvider.getNextRound(this.currentRoundNumber);
+        Round nextRound = roundProvider.getNextRound(this.getCurrentRoundNumber());
 
         String[] choiceLetters = nextRound.getRandomLetters();
         this.currentChoices = new ArrayList<>(choiceLetters.length);
@@ -150,17 +144,17 @@ public class InMemoryThreeOutOfFourGame implements ThreeOutOfFourGame {
             this.currentChoices.add(new ThreeOutOfFourChoice(letter));
         }
 
-        this.currentProposedAnswer = "";
-        this.answer = nextRound.getAnswer();
+        resetProposedAnswer();
+        this.gameState.setCurrentAnswer(nextRound.getAnswer());
 
-        this.currBottomLeftImage = nextRound.getBottomLeftImage();
-        this.currBottomRightImage = nextRound.getBottomRightImage();
-        this.currTopLeftImage = nextRound.getTopLeftImage();
-        this.currTopRightImage = nextRound.getTopRightImage();
+        this.gameState.setCurrBottomLeftImage(nextRound.getBottomLeftImage());
+        this.gameState.setCurrBottomRightImage(nextRound.getBottomRightImage());
+        this.gameState.setCurrTopLeftImage(nextRound.getTopLeftImage());
+        this.gameState.setCurrTopRightImage(nextRound.getTopRightImage());
 
-        int oldRoundNumber = this.currentRoundNumber;
-        this.currentRoundNumber = nextRound.getRoundNumber();
-        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, oldRoundNumber, this.currentRoundNumber);
+        int oldRoundNumber = this.gameState.getCurrentRoundNumber();
+        this.gameState.setCurrentRoundNumber(nextRound.getRoundNumber());
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, oldRoundNumber, this.gameState.getCurrentRoundNumber());
     }
 
     @Override

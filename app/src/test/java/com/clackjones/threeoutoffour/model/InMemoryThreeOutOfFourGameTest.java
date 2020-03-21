@@ -64,7 +64,6 @@ public class InMemoryThreeOutOfFourGameTest {
 
         assertThat(game.getProposedAnswer(), equalTo(""));
         assertThat(game.getCurrentRoundNumber(), equalTo(1));
-        assertThat(game.answer, equalTo("aei"));
 
         assertThat(game.getLettersRemaining(), equalTo(3));
 
