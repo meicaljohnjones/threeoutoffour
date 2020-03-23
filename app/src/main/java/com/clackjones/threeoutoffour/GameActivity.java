@@ -1,6 +1,7 @@
 package com.clackjones.threeoutoffour;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,11 +29,17 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance().threeOutOfFourGame();
+        this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance(this.getApplicationContext()).threeOutOfFourGame();
         threeOutOfFourGame.initialize();
         threeOutOfFourGame.addPropertyChangeListener(this);
 
         populateUI();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        threeOutOfFourGame.saveGame();
+        super.onSaveInstanceState(outState, outPersistentState);
     }
 
     private void populateUI() {

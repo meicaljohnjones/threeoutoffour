@@ -1,5 +1,7 @@
 package com.clackjones.threeoutoffour.model;
 
+import android.content.Context;
+
 import com.clackjones.threeoutoffour.state.GameStateProvider;
 
 import java.beans.PropertyChangeListener;
@@ -15,17 +17,20 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     private PropertyChangeSupport propertyChangeSupport;
     private boolean isInitialized;
 
-    public EventFiringThreeOutOfFourGame(RoundProvider roundProvider, GameStateProvider gameStateProvider) {
+    private Context context;
+
+    public EventFiringThreeOutOfFourGame(RoundProvider roundProvider, GameStateProvider gameStateProvider, Context context) {
         this.gameStateProvider = gameStateProvider;
         this.roundProvider = roundProvider;
         this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.isInitialized = false;
+        this.context = context;
     }
 
     @Override
     public void initialize() {
         if (!this.isInitialized) {
-            this.gameState = gameStateProvider.loadGameStateOrCreateNew();
+            this.gameState = gameStateProvider.loadGameStateOrCreateNew(this.context);
             boolean isNewGame = this.gameState.getCurrentRoundNumber() == 0;
 
             if (isNewGame) {
@@ -113,6 +118,8 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
                 incrementRound();
             }
         }
+
+        saveGame();
     }
 
     @Override
@@ -167,5 +174,10 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener) {
         this.propertyChangeSupport.addPropertyChangeListener(propertyName, propertyChangeListener);
+    }
+
+    @Override
+    public void saveGame() {
+        this.gameStateProvider.saveGameState(this.gameState, this.context);
     }
 }

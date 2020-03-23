@@ -88,4 +88,6 @@ public interface ThreeOutOfFourGame {
      * @param propertyChangeListener
      */
     void addPropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener);
+
+    void saveGame();
 }

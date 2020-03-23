@@ -1,6 +1,8 @@
 package com.clackjones.threeoutoffour.model;
 
 
+import android.content.Context;
+
 import com.clackjones.threeoutoffour.state.GameStateProvider;
 
 import org.junit.Test;
@@ -29,6 +31,9 @@ public class EventFiringThreeOutOfFourGameTest {
     @Mock
     RoundProvider roundProvider;
 
+    @Mock
+    Context context;
+
     @InjectMocks
     EventFiringThreeOutOfFourGame game;
 
@@ -48,7 +53,7 @@ public class EventFiringThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
-        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+        given(gameStateProvider.loadGameStateOrCreateNew(context)).willReturn(new GameState());
 
         game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
 
@@ -87,7 +92,7 @@ public class EventFiringThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
-        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+        given(gameStateProvider.loadGameStateOrCreateNew(context)).willReturn(new GameState());
 
 
         // when
@@ -132,7 +137,7 @@ public class EventFiringThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
-        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+        given(gameStateProvider.loadGameStateOrCreateNew(context)).willReturn(new GameState());
 
         game.addPropertyChangeListener(ThreeOutOfFourGame.CHOICE_MADE_EVENT, choiceMadeListener);
         game.addPropertyChangeListener(ThreeOutOfFourGame.LETTERS_REMAINING_DECREMENTED_EVENT, lettersRemainingListener);
@@ -183,7 +188,7 @@ public class EventFiringThreeOutOfFourGameTest {
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
-        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+        given(gameStateProvider.loadGameStateOrCreateNew(context)).willReturn(new GameState());
 
 
         game.initialize();
@@ -216,7 +221,7 @@ public class EventFiringThreeOutOfFourGameTest {
                 new String[]{"a", "e", "i", "o", "u"});
 
         given(roundProvider.getNextRound(0)).willReturn(testRound);
-        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+        given(gameStateProvider.loadGameStateOrCreateNew(context)).willReturn(new GameState());
 
         final Boolean[] isWrongAnswerEventFired = {false};
         PropertyChangeListener wrongAnswerEvtListener = new PropertyChangeListener() {
@@ -259,7 +264,7 @@ public class EventFiringThreeOutOfFourGameTest {
                 new String[]{"e", "i", "o", "u", "a", "a"});
         given(roundProvider.getNextRound(0)).willReturn(testRound1);
         given(roundProvider.getNextRound(1)).willReturn(testRound2);
-        given(gameStateProvider.loadGameStateOrCreateNew()).willReturn(new GameState());
+        given(gameStateProvider.loadGameStateOrCreateNew(context)).willReturn(new GameState());
 
         final Boolean[] isRoundNumberEventFired = {false};
         PropertyChangeListener propertyChangeListener = new PropertyChangeListener() {
