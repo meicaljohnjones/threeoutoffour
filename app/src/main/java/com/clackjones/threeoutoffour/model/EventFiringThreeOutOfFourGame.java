@@ -180,4 +180,11 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     public void saveGame() {
         this.gameStateProvider.saveGameState(this.gameState, this.context);
     }
+
+    @Override
+    public void restartGame() {
+        this.gameStateProvider.deleteGame(context);
+        this.gameState = new GameState();
+        incrementRound();
+    }
 }

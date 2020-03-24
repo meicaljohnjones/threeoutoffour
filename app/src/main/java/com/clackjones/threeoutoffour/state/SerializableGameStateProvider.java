@@ -63,4 +63,12 @@ public class SerializableGameStateProvider implements GameStateProvider {
 
         return new GameState();
     }
+
+    @Override
+    public void deleteGame(Context context) {
+        File savedStateFile = new File(context.getFilesDir(), FILE_NAME);
+        if (savedStateFile.exists()) {
+            savedStateFile.delete();
+        }
+    }
 }
