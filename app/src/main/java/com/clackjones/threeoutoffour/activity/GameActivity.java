@@ -1,4 +1,4 @@
-package com.clackjones.threeoutoffour;
+package com.clackjones.threeoutoffour.activity;
 
 import android.content.Intent;
 import android.os.PersistableBundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.clackjones.threeoutoffour.R;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourChoice;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGameLocator;
