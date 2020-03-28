@@ -4,6 +4,6 @@
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/reset_action"
         android:title="Reset"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 
 </menu>

@@ -2,6 +2,7 @@ package com.clackjones.threeoutoffour.activity;
 
 import android.content.Intent;
 import android.os.PersistableBundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.clackjones.threeoutoffour.R;
+import com.clackjones.threeoutoffour.dialog.ResetGameDialogFragment;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourChoice;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGameLocator;
@@ -53,7 +55,9 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.reset_action:
-                threeOutOfFourGame.restartGame();
+                ResetGameDialogFragment fragment = new ResetGameDialogFragment();
+                fragment.setGame(threeOutOfFourGame);
+                fragment.show(getSupportFragmentManager(), "reset");
                 return true;
 
             default:
