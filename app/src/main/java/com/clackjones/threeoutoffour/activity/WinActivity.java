@@ -1,21 +1,24 @@
-package com.clackjones.threeoutoffour;
+package com.clackjones.threeoutoffour.activity;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-public class MainActivity extends Activity {
+import com.clackjones.threeoutoffour.R;
+
+public class WinActivity extends AppCompatActivity {
+
     ImageView bigboss;
     Animation smalltobig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_win);
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
 
@@ -23,12 +26,15 @@ public class MainActivity extends Activity {
         bigboss.startAnimation(smalltobig);
     }
 
-    //make it so that player is taken to where they left off in the game
-    public void startGame(View view) {
+    public void continueWithGame(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
+    public void returnToHomeScreen(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
 
 

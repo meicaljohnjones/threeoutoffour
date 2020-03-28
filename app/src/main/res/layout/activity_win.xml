@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bgapp"
-    tools:context=".WinActivity">
+    tools:context=".activity.WinActivity">
 
     <TextView
         android:id="@+id/textScreen"
