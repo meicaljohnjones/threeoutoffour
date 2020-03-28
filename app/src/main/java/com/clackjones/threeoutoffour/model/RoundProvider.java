@@ -94,11 +94,11 @@ public class RoundProvider {
 
         //round 16 - easy
         addRound(16, R.drawable.bark1, R.drawable.dogbark, R.drawable.bark2, R.drawable.leaf,
-                "BARK", new String[]{"E", "A", "S", "C", "H", "R", "B", "W", "A", "I"});
+                "BARK", new String[]{"E", "A", "S", "C", "H", "R", "B", "W", "A", "K"});
 
         //round 17
         addRound(17, R.drawable.bass1, R.drawable.bass2, R.drawable.bass, R.drawable.tea,
-                "BASS", new String[]{"E", "A", "S", "C", "H", "R", "T", "W", "A", "I"});
+                "BASS", new String[]{"E", "A", "S", "B", "H", "R", "T", "S", "A", "I"});
 
         //round 18
         addRound(18, R.drawable.cranebird1, R.drawable.crane2, R.drawable.cranebird2, R.drawable.firetruck,
