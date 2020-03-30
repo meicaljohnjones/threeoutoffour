@@ -61,7 +61,16 @@ public class RestartGameTest {
             }
         };
 
-        game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
+        final Boolean[] isGameResetEventFired = {false};
+        PropertyChangeListener resetGameEventListener = new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                evt.getNewValue();
+                isGameResetEventFired[0] = true;
+            }
+        };
+
+
 
         game.makeChoice(game.getChoices().get(0));
         game.makeChoice(game.getChoices().get(1));
@@ -70,6 +79,9 @@ public class RestartGameTest {
         assertThat(game.getCurrentRoundNumber(), equalTo(2));
 
         // when
+
+        game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
+        game.addPropertyChangeListener(ThreeOutOfFourGame.RESET_GAME_EVENT, resetGameEventListener);
         game.restartGame();
 
         // then
@@ -82,6 +94,8 @@ public class RestartGameTest {
         assertThat(game.getChoices().get(1).getValue(), equalTo("e"));
         assertThat(game.getChoices().get(2).getValue(), equalTo("i"));
 
-        assertThat(isRoundNumberEventFired[0], equalTo(true));
+        // should never be called
+        assertThat(isRoundNumberEventFired[0], equalTo(false));
+        assertThat(isGameResetEventFired[0], equalTo(true));
     }
 }

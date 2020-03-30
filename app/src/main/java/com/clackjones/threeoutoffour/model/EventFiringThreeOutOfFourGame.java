@@ -35,6 +35,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
             if (isNewGame) {
                 incrementRound();
+                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, 0, 1);
             }
             this.isInitialized = true;
         }
@@ -116,6 +117,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
                 this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.INCORRECT_PROPOSED_ANSWER_EVENT, 1,0);
             } else {
                 incrementRound();
+                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, this.gameState.getCurrentRoundNumber() - 1, this.gameState.getCurrentRoundNumber());
             }
         }
 
@@ -163,7 +165,6 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
         int oldRoundNumber = this.gameState.getCurrentRoundNumber();
         this.gameState.setCurrentRoundNumber(nextRound.getRoundNumber());
-        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, oldRoundNumber, this.gameState.getCurrentRoundNumber());
     }
 
     @Override
@@ -186,5 +187,6 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
         this.gameStateProvider.deleteGame(context);
         this.gameState = new GameState();
         incrementRound();
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.RESET_GAME_EVENT, 0, 1);
     }
 }
