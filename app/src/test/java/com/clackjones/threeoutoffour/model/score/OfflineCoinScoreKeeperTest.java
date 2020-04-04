@@ -1,4 +1,8 @@
-package com.clackjones.threeoutoffour.model;
+package com.clackjones.threeoutoffour.model.score;
+
+import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
+import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
+import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeper;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,7 +21,7 @@ public class OfflineCoinScoreKeeperTest {
     public void shouldHaveZeroCoinsOnInit() {
         // given
         // when
-        OfflineCoinScoreKeeper offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
+        OfflineCoinScoreKeeper offlineCoinScoreKeeper = OfflineCoinScoreKeeper.getInstance();
 
         // then
         assertThat(offlineCoinScoreKeeper.getCoinScore(), equalTo(0));
@@ -25,7 +29,7 @@ public class OfflineCoinScoreKeeperTest {
 
     @Test
     public void shouldIncrementScoreByFiveWhenRoundIncremented() {
-        OfflineCoinScoreKeeper offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
+        OfflineCoinScoreKeeper offlineCoinScoreKeeper = OfflineCoinScoreKeeper.getInstance();
         Integer initialScore = offlineCoinScoreKeeper.getCoinScore();
 
         PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);

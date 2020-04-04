@@ -2,7 +2,6 @@ package com.clackjones.threeoutoffour.activity;
 
 import android.content.Intent;
 import android.os.PersistableBundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +17,7 @@ import com.clackjones.threeoutoffour.model.ThreeOutOfFourChoice;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGameLocator;
 
+import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeper;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.beans.PropertyChangeEvent;
@@ -29,6 +29,7 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     private static final float TRANSPARENT = 0f;
 
     private ThreeOutOfFourGame threeOutOfFourGame;
+    private OfflineCoinScoreKeeper offlineCoinScoreKeeper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,10 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance(this.getApplicationContext()).threeOutOfFourGame();
         threeOutOfFourGame.initialize();
         threeOutOfFourGame.addPropertyChangeListener(this);
+
+        offlineCoinScoreKeeper = OfflineCoinScoreKeeper.getInstance();
+        threeOutOfFourGame.addPropertyChangeListener(offlineCoinScoreKeeper);
+        offlineCoinScoreKeeper.addPropertyChangeListener(this);
 
         populateUI();
         setSupportActionBar(myToolbar);
@@ -76,15 +81,18 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         updateImages();
         updateGrid();
         updateProposedAnswer();
-        updateRoundNumber();
+        updateRoundNumberAndCoins();
     }
 
-    private void updateRoundNumber() {
+    private void updateRoundNumberAndCoins() {
         int roundNumber = this.threeOutOfFourGame.getCurrentRoundNumber();
         String formattedRoundNumber = String.format("Round %2d", roundNumber);
 
+        int coinScore = this.offlineCoinScoreKeeper.getCoinScore();
+        String formattedCoinScore = String.format("Coins: %2d", coinScore);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        toolbar.setTitle(formattedRoundNumber);
+        toolbar.setTitle(formattedRoundNumber + " | " + formattedCoinScore);
     }
 
     private void updateLettersRemainingText() {

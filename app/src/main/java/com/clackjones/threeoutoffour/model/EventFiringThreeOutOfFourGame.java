@@ -7,6 +7,7 @@ import com.clackjones.threeoutoffour.state.GameStateProvider;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
@@ -169,12 +170,18 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
-        this.propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
+        boolean isListenerAlreadyRegistered = Arrays.asList(this.propertyChangeSupport.getPropertyChangeListeners()).contains(propertyChangeListener);
+        if (!isListenerAlreadyRegistered) {
+            this.propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
+        }
     }
 
     @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener) {
-        this.propertyChangeSupport.addPropertyChangeListener(propertyName, propertyChangeListener);
+        boolean isListenerAlreadyRegistered = Arrays.asList(this.propertyChangeSupport.getPropertyChangeListeners(propertyName)).contains(propertyChangeListener);
+        if (!isListenerAlreadyRegistered) {
+            this.propertyChangeSupport.addPropertyChangeListener(propertyName, propertyChangeListener);
+        }
     }
 
     @Override

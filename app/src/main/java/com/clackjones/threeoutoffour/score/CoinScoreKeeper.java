@@ -1,4 +1,4 @@
-package com.clackjones.threeoutoffour.model;
+package com.clackjones.threeoutoffour.score;
 
 import java.beans.PropertyChangeListener;
 

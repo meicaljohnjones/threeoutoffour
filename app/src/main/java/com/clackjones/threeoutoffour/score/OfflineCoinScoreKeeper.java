@@ -1,14 +1,27 @@
-package com.clackjones.threeoutoffour.model;
+package com.clackjones.threeoutoffour.score;
+
+import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Arrays;
 
 public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
+    private static OfflineCoinScoreKeeper offlineCoinScoreKeeper;
+
     private int coinScore;
     private PropertyChangeSupport propertyChangeSupport;
 
-    public OfflineCoinScoreKeeper() {
+    public static OfflineCoinScoreKeeper getInstance() {
+        if (offlineCoinScoreKeeper == null) {
+            offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
+        }
+
+        return offlineCoinScoreKeeper;
+    }
+
+    private OfflineCoinScoreKeeper() {
         this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.coinScore = 0;
     }
@@ -27,8 +40,6 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
             this.addCoins(5);
-        } else {
-            throw new UnsupportedOperationException("Not yet implemented");
         }
     }
 
@@ -40,11 +51,17 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
-        this.propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
+        boolean isListenerAlreadyRegistered = Arrays.asList(this.propertyChangeSupport.getPropertyChangeListeners()).contains(propertyChangeListener);
+        if (!isListenerAlreadyRegistered) {
+            this.propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
+        }
     }
 
     @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener) {
-        this.propertyChangeSupport.addPropertyChangeListener(propertyName, propertyChangeListener);
+        boolean isListenerAlreadyRegistered = Arrays.asList(this.propertyChangeSupport.getPropertyChangeListeners(propertyName)).contains(propertyChangeListener);
+        if (!isListenerAlreadyRegistered) {
+            this.propertyChangeSupport.addPropertyChangeListener(propertyName, propertyChangeListener);
+        }
     }
 }
