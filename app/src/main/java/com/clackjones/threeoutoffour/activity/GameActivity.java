@@ -17,7 +17,9 @@ import com.clackjones.threeoutoffour.model.ThreeOutOfFourChoice;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGameLocator;
 
+import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
 import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeper;
+import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeperProvider;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.beans.PropertyChangeEvent;
@@ -42,7 +44,8 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         threeOutOfFourGame.initialize();
         threeOutOfFourGame.addPropertyChangeListener(this);
 
-        offlineCoinScoreKeeper = OfflineCoinScoreKeeper.getInstance();
+        offlineCoinScoreKeeper = OfflineCoinScoreKeeperProvider.getInstance().loadOrCreate(this.getApplicationContext());
+
         threeOutOfFourGame.addPropertyChangeListener(offlineCoinScoreKeeper);
         offlineCoinScoreKeeper.addPropertyChangeListener(this);
 
@@ -73,6 +76,8 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         threeOutOfFourGame.saveGame();
+        OfflineCoinScoreKeeperProvider.getInstance().saveCoinScoreKeeper(this.getApplicationContext(),
+                this.offlineCoinScoreKeeper);
         super.onSaveInstanceState(outState, outPersistentState);
     }
 
@@ -161,9 +166,14 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
         if (evtName.equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
             this.visitWinScreen();
+
         } else if (evtName.equals(ThreeOutOfFourGame.RESET_GAME_EVENT)) {
             this.visitHomeScreen();
-        } else {
+        }  else if (evtName.equals(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT)) {
+            OfflineCoinScoreKeeperProvider.getInstance().saveCoinScoreKeeper(this.getApplicationContext(),
+                    this.offlineCoinScoreKeeper);
+        }
+        else {
             populateUI();
         }
     }

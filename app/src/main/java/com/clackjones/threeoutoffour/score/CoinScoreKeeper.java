@@ -2,7 +2,7 @@ package com.clackjones.threeoutoffour.score;
 
 import java.beans.PropertyChangeListener;
 
-public interface CoinScoreKeeper extends PropertyChangeListener {
+public interface CoinScoreKeeper extends PropertyChangeListener, java.io.Serializable {
     final String COIN_SCORE_CHANGED_EVENT = "COIN_SCORE_CHANGED_EVENT";
 
     /**

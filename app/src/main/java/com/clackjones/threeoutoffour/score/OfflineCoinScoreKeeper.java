@@ -8,20 +8,10 @@ import java.beans.PropertyChangeSupport;
 import java.util.Arrays;
 
 public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
-    private static OfflineCoinScoreKeeper offlineCoinScoreKeeper;
-
     private int coinScore;
     private PropertyChangeSupport propertyChangeSupport;
 
-    public static OfflineCoinScoreKeeper getInstance() {
-        if (offlineCoinScoreKeeper == null) {
-            offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
-        }
-
-        return offlineCoinScoreKeeper;
-    }
-
-    private OfflineCoinScoreKeeper() {
+    public OfflineCoinScoreKeeper() {
         this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.coinScore = 0;
     }
@@ -29,6 +19,13 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
     @Override
     public Integer getCoinScore() {
         return this.coinScore;
+    }
+
+    /**
+     * To be used for serialization purposes only
+     */
+    public void setCoinScore(Integer score) {
+        this.coinScore = score;
     }
 
     @Override
