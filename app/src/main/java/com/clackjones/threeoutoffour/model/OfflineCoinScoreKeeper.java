@@ -2,11 +2,14 @@ package com.clackjones.threeoutoffour.model;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
-    private Integer coinScore;
+    private int coinScore;
+    private PropertyChangeSupport propertyChangeSupport;
 
     public OfflineCoinScoreKeeper() {
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.coinScore = 0;
     }
 
@@ -30,16 +33,18 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
     }
 
     private void addCoins(Integer numCoins) {
+        int oldCoinScore = this.coinScore;
         this.coinScore = this.coinScore + numCoins;
+        this.propertyChangeSupport.firePropertyChange(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT, oldCoinScore, this.coinScore);
     }
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        this.propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
     }
 
     @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        this.propertyChangeSupport.addPropertyChangeListener(propertyName, propertyChangeListener);
     }
 }

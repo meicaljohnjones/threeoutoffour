@@ -3,6 +3,8 @@ package com.clackjones.threeoutoffour.model;
 import java.beans.PropertyChangeListener;
 
 public interface CoinScoreKeeper extends PropertyChangeListener {
+    final String COIN_SCORE_CHANGED_EVENT = "COIN_SCORE_CHANGED_EVENT";
+
     /**
      * @return the 'number of coins' we currently have
      */
