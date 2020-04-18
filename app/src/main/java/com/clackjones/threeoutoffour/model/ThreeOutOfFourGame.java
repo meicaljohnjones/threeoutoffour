@@ -10,6 +10,7 @@ public interface ThreeOutOfFourGame {
     final String ROUND_NUMBER_INCREMENTED_EVENT = "ROUND_NUMBER_INCREMENTED_EVENT";
     final String RESET_GAME_EVENT = "RESET_GAME_EVENT";
     final String LETTERS_REMAINING_DECREMENTED_EVENT = "LETTERS_REMAINING_DECREMENTED_EVENT";
+    final String HINT_LETTER_REMOVED_EVENT = "HINT_LETTER_REMOVED_EVENT";
 
 
     /**
@@ -93,4 +94,6 @@ public interface ThreeOutOfFourGame {
     void saveGame();
 
     void restartGame();
+
+    void performRemoveALetterHint();
 }

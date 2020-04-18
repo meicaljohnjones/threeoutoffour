@@ -196,4 +196,18 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
         incrementRound();
         this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.RESET_GAME_EVENT, 0, 1);
     }
+
+    @Override
+    public void performRemoveALetterHint() {
+        for (ThreeOutOfFourChoice choice : getChoices()) {
+            boolean isLetterInAnswer = this.gameState.getCurrentAnswer().contains(choice.getValue());
+            boolean isValidCandidateToRemove = !choice.getIsAlreadySelected() && !isLetterInAnswer;
+
+            if (isValidCandidateToRemove) {
+                choice.setIsAlreadySelected(true);
+                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT, 0, 1);
+                return;
+            }
+        }
+    }
 }

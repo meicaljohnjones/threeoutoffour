@@ -21,7 +21,7 @@ public class OfflineCoinScoreKeeperTest {
     public void shouldHaveZeroCoinsOnInit() {
         // given
         // when
-        OfflineCoinScoreKeeper offlineCoinScoreKeeper = OfflineCoinScoreKeeper.getInstance();
+        OfflineCoinScoreKeeper offlineCoinScoreKeeper =  new OfflineCoinScoreKeeper();
 
         // then
         assertThat(offlineCoinScoreKeeper.getCoinScore(), equalTo(0));
@@ -29,7 +29,7 @@ public class OfflineCoinScoreKeeperTest {
 
     @Test
     public void shouldIncrementScoreByFiveWhenRoundIncremented() {
-        OfflineCoinScoreKeeper offlineCoinScoreKeeper = OfflineCoinScoreKeeper.getInstance();
+        OfflineCoinScoreKeeper offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
         Integer initialScore = offlineCoinScoreKeeper.getCoinScore();
 
         PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
