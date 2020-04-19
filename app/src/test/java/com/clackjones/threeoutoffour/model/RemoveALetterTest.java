@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.clackjones.threeoutoffour.state.GameStateProvider;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -118,5 +119,11 @@ public class RemoveALetterTest {
         assertThat(game.getProposedAnswer(), equalTo(""));
 
         assertThat(isHintFired[0], is(true));
+    }
+
+    @Test
+    @Ignore
+    public void shouldNotRemoveLetterWhenNoneLeftAndShouldThrowEventToSayCantRemoveAnymore() {
+
     }
 }

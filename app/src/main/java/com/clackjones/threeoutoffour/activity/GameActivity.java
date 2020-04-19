@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.clackjones.threeoutoffour.R;
+import com.clackjones.threeoutoffour.dialog.HintDialogFragment;
 import com.clackjones.threeoutoffour.dialog.ResetGameDialogFragment;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourChoice;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
@@ -188,4 +189,10 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         startActivity(intent);
     }
 
+    public void showHintsMenu(View view) {
+        System.out.println("Hello, world");
+        HintDialogFragment hintDialogFragment = new HintDialogFragment();
+        hintDialogFragment.setGame(this.threeOutOfFourGame);
+        hintDialogFragment.show(getSupportFragmentManager(), "HintDialogFragment");
+    }
 }
