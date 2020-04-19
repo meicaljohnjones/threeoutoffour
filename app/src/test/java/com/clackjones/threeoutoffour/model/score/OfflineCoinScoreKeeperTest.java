@@ -54,9 +54,31 @@ public class OfflineCoinScoreKeeperTest {
     }
 
     @Test
-    @Ignore
-    public void shouldDecreaseScoreIfHintTaken() {
-        fail("Not yet implemented");
+    public void shouldDecreaseScoreBy10IfRemoveLetterHintTaken() {
+        // given
+        OfflineCoinScoreKeeper offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
+        Integer initialScore = 42;
+        offlineCoinScoreKeeper.setCoinScore(42);
+
+        PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+        propertyChangeSupport.addPropertyChangeListener(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT, offlineCoinScoreKeeper);
+
+        final Boolean[] isCoinScoreChangedEvtCalled = {false};
+        offlineCoinScoreKeeper.addPropertyChangeListener(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                isCoinScoreChangedEvtCalled[0] = true;
+            }
+        });
+
+        // when
+        propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT, 1, 2);
+
+        // then
+        Integer scoreIncrement = offlineCoinScoreKeeper.getCoinScore() - initialScore;
+        assertThat(scoreIncrement, equalTo(-10));
+
+        assertThat(isCoinScoreChangedEvtCalled[0], equalTo(true));
     }
 
     @Test

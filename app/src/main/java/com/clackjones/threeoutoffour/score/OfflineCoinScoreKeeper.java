@@ -26,6 +26,7 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
      */
     public void setCoinScore(Integer score) {
         this.coinScore = score;
+        this.recitfyCoinScore();
     }
 
     @Override
@@ -37,13 +38,27 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
             this.addCoins(5);
+        } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT)) {
+            this.removeCoins(10);
         }
     }
 
     private void addCoins(Integer numCoins) {
         int oldCoinScore = this.coinScore;
         this.coinScore = this.coinScore + numCoins;
+        this.recitfyCoinScore();
+
         this.propertyChangeSupport.firePropertyChange(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT, oldCoinScore, this.coinScore);
+    }
+
+    private void removeCoins(Integer numCoins) {
+        this.addCoins(-numCoins);
+    }
+
+    private void recitfyCoinScore() {
+        if (this.coinScore < 0) {
+            this.coinScore = 0;
+        }
     }
 
     @Override
