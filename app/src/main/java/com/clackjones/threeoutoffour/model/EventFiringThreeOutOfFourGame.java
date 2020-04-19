@@ -49,16 +49,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public int getLettersRemaining() {
-        return this.gameState.getCurrentAnswer().length() - this.countChoicesMade();
-    }
-
-    private int countChoicesMade() {
-        int choicesMade = 0;
-        for (ThreeOutOfFourChoice choice: this.gameState.getCurrentChoices()) {
-            if (choice.getIsAlreadySelected()) choicesMade += 1;
-        }
-
-        return choicesMade;
+        return this.gameState.getCurrentAnswer().length() - this.gameState.getCurrentProposedAnswer().length();
     }
 
     @Override
