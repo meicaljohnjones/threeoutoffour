@@ -12,6 +12,8 @@ public interface ThreeOutOfFourGame {
     final String LETTERS_REMAINING_DECREMENTED_EVENT = "LETTERS_REMAINING_DECREMENTED_EVENT";
     final String HINT_LETTER_REMOVED_EVENT = "HINT_LETTER_REMOVED_EVENT";
 
+    final int HINT_LETTER_REMOVED_COINS_REQUIRED = 10;
+
 
     /**
      * Required setup
@@ -95,5 +97,5 @@ public interface ThreeOutOfFourGame {
 
     void restartGame();
 
-    void performRemoveALetterHint();
+    void performRemoveALetterHint() throws InsufficientCoinScoreException;
 }

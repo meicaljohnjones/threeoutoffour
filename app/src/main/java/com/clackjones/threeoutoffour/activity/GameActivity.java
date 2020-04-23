@@ -41,11 +41,11 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 
-        this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance(this.getApplicationContext()).threeOutOfFourGame();
+        offlineCoinScoreKeeper = OfflineCoinScoreKeeperProvider.getInstance().loadOrCreate(this.getApplicationContext());
+        this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance(offlineCoinScoreKeeper, this.getApplicationContext()).threeOutOfFourGame();
         threeOutOfFourGame.initialize();
         threeOutOfFourGame.addPropertyChangeListener(this);
 
-        offlineCoinScoreKeeper = OfflineCoinScoreKeeperProvider.getInstance().loadOrCreate(this.getApplicationContext());
 
         threeOutOfFourGame.addPropertyChangeListener(offlineCoinScoreKeeper);
         offlineCoinScoreKeeper.addPropertyChangeListener(this);
@@ -173,6 +173,7 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         }  else if (evtName.equals(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT)) {
             OfflineCoinScoreKeeperProvider.getInstance().saveCoinScoreKeeper(this.getApplicationContext(),
                     this.offlineCoinScoreKeeper);
+            populateUI();
         }
         else {
             populateUI();

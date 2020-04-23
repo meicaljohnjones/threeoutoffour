@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.widget.Toast;
 
 import com.clackjones.threeoutoffour.R;
+import com.clackjones.threeoutoffour.model.InsufficientCoinScoreException;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 
 public class HintDialogFragment extends DialogFragment {
@@ -24,7 +26,11 @@ public class HintDialogFragment extends DialogFragment {
                         switch(which) {
                             case 0:
                                 // remove a letter
-                                game.performRemoveALetterHint();
+                                try {
+                                    game.performRemoveALetterHint();
+                                } catch (InsufficientCoinScoreException e) {
+                                    showToast();
+                                }
                             default:
                                 return;
                         }
@@ -40,4 +46,13 @@ public class HintDialogFragment extends DialogFragment {
     public ThreeOutOfFourGame getGame() {
         return game;
     }
+
+    private void showToast() {
+        Toast toast = Toast.makeText(this.getContext(),
+                R.string.insufficient_credit,
+                Toast.LENGTH_SHORT);
+
+        toast.show();
+    }
+
 }

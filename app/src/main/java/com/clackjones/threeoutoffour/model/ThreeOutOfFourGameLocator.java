@@ -2,20 +2,21 @@ package com.clackjones.threeoutoffour.model;
 
 import android.content.Context;
 
+import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
 import com.clackjones.threeoutoffour.state.SerializableGameStateProvider;
 
 public class ThreeOutOfFourGameLocator {
     private static ThreeOutOfFourGameLocator locator;
     private ThreeOutOfFourGame threeOutOfFourGame;
 
-    private ThreeOutOfFourGameLocator(Context context) {
+    private ThreeOutOfFourGameLocator(CoinScoreKeeper coinScoreKeeper, Context context) {
         threeOutOfFourGame = new EventFiringThreeOutOfFourGame(RoundProvider.getInstance(),
-                SerializableGameStateProvider.getInstance(), context);
+                SerializableGameStateProvider.getInstance(), coinScoreKeeper, context);
     }
 
-    public static ThreeOutOfFourGameLocator getInstance(Context context) {
+    public static ThreeOutOfFourGameLocator getInstance(CoinScoreKeeper coinScoreKeeper, Context context) {
         if (locator == null) {
-            locator = new ThreeOutOfFourGameLocator(context);
+            locator = new ThreeOutOfFourGameLocator(coinScoreKeeper, context);
         }
         return locator;
     }

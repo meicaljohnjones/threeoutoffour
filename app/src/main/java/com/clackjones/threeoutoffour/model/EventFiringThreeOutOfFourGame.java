@@ -2,6 +2,7 @@ package com.clackjones.threeoutoffour.model;
 
 import android.content.Context;
 
+import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
 import com.clackjones.threeoutoffour.state.GameStateProvider;
 
 import java.beans.PropertyChangeListener;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     final GameStateProvider gameStateProvider;
+    final CoinScoreKeeper coinScoreKeeper;
 
     private final RoundProvider roundProvider;
     private GameState gameState;
@@ -20,12 +22,13 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     private Context context;
 
-    public EventFiringThreeOutOfFourGame(RoundProvider roundProvider, GameStateProvider gameStateProvider, Context context) {
+    public EventFiringThreeOutOfFourGame(RoundProvider roundProvider, GameStateProvider gameStateProvider, CoinScoreKeeper coinScoreKeeper, Context context) {
         this.gameStateProvider = gameStateProvider;
         this.roundProvider = roundProvider;
         this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.isInitialized = false;
         this.context = context;
+        this.coinScoreKeeper = coinScoreKeeper;
     }
 
     @Override
@@ -189,7 +192,11 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     @Override
-    public void performRemoveALetterHint() {
+    public void performRemoveALetterHint() throws InsufficientCoinScoreException {
+        if (this.coinScoreKeeper.getCoinScore() < ThreeOutOfFourGame.HINT_LETTER_REMOVED_COINS_REQUIRED) {
+            throw new InsufficientCoinScoreException();
+        }
+
         for (ThreeOutOfFourChoice choice : getChoices()) {
             boolean isLetterInAnswer = this.gameState.getCurrentAnswer().contains(choice.getValue());
             boolean isValidCandidateToRemove = !choice.getIsAlreadySelected() && !isLetterInAnswer;
