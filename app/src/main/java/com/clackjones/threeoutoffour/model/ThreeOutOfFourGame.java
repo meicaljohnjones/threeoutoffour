@@ -11,8 +11,10 @@ public interface ThreeOutOfFourGame {
     final String RESET_GAME_EVENT = "RESET_GAME_EVENT";
     final String LETTERS_REMAINING_DECREMENTED_EVENT = "LETTERS_REMAINING_DECREMENTED_EVENT";
     final String HINT_LETTER_REMOVED_EVENT = "HINT_LETTER_REMOVED_EVENT";
+    final String HINT_LETTER_REVEALED_EVENT = "HINT_LETTER_REVEALED_EVENT";
 
     final int HINT_LETTER_REMOVED_COINS_REQUIRED = 10;
+    final int HINT_LETTER_REVEALED_COINS_REQUIRED = 35;
 
 
     /**
@@ -98,4 +100,6 @@ public interface ThreeOutOfFourGame {
     void restartGame();
 
     void performRemoveALetterHint() throws InsufficientCoinScoreException;
+
+    void performRevealALetterHint() throws InsufficientCoinScoreException;
 }

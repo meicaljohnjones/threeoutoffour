@@ -208,4 +208,62 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
             }
         }
     }
+
+    @Override
+    public void performRevealALetterHint() throws InsufficientCoinScoreException {
+        if (this.coinScoreKeeper.getCoinScore() < ThreeOutOfFourGame.HINT_LETTER_REVEALED_COINS_REQUIRED) {
+            throw new InsufficientCoinScoreException();
+        }
+
+        clearIncorrectLetters();
+
+        int indexOfNextLetterToReveal = this.gameState.getCurrentProposedAnswer().length();
+        Character nextCorrectChar = this.gameState.getCurrentAnswer().toCharArray()[indexOfNextLetterToReveal];
+        makeChoiceFirstMatching(nextCorrectChar.toString());
+    }
+
+    private void makeChoiceFirstMatching(String character) {
+        for (ThreeOutOfFourChoice choice: this.getChoices()) {
+            boolean isCorrectLetter = choice.getValue().equals(character);
+            if (!choice.getIsAlreadySelected() && isCorrectLetter) {
+                makeChoice(choice);
+                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_LETTER_REVEALED_EVENT, 0, 1);
+                return;
+            }
+        }
+    }
+
+    private void clearIncorrectLetters() {
+        String[] proposedChars = this.gameState.getCurrentProposedAnswer().split("|");
+        String[] currentAnswerChars = this.gameState.getCurrentAnswer().split("|");
+
+        int indexStartCorrection = 0;
+        for (int i = 0; i < proposedChars.length; ++i) {
+            String proposedChar = proposedChars[i];
+            String currentAnswerChar = currentAnswerChars[i];
+            if (!proposedChar.equals(currentAnswerChar)) {
+                indexStartCorrection = i;
+                break;
+            }
+        }
+
+        // undo incorrect choices
+        for (int i = indexStartCorrection; i < proposedChars.length; ++i) {
+            String proposedChar = proposedChars[i];
+            undoChoice(proposedChar);
+        }
+
+        String proposedAnswerWithIncorrectRemoved = this.gameState.getCurrentProposedAnswer().substring(0, indexStartCorrection);
+        this.gameState.setCurrentProposedAnswer(proposedAnswerWithIncorrectRemoved);
+    }
+
+    private void undoChoice(String proposedChar) {
+        for (ThreeOutOfFourChoice choice: this.getChoices()) {
+            boolean lettersMatch = choice.getValue().equals(proposedChar);
+            if (choice.getIsAlreadySelected() && lettersMatch) {
+                choice.reset();
+                return;
+            }
+        }
+    }
 }
