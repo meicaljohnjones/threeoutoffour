@@ -31,6 +31,13 @@ public class HintDialogFragment extends DialogFragment {
                                 } catch (InsufficientCoinScoreException e) {
                                     showToast();
                                 }
+                            case 1:
+                                // remove a letter
+                                try {
+                                    game.performRevealALetterHint();
+                                } catch (InsufficientCoinScoreException e) {
+                                    showToast();
+                                }
                             default:
                                 return;
                         }

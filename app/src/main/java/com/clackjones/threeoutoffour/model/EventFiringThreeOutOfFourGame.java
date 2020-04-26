@@ -220,6 +220,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
         int indexOfNextLetterToReveal = this.gameState.getCurrentProposedAnswer().length();
         Character nextCorrectChar = this.gameState.getCurrentAnswer().toCharArray()[indexOfNextLetterToReveal];
         makeChoiceFirstMatching(nextCorrectChar.toString());
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_LETTER_REVEALED_EVENT, 0, 1);
     }
 
     private void makeChoiceFirstMatching(String character) {
@@ -227,20 +228,19 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
             boolean isCorrectLetter = choice.getValue().equals(character);
             if (!choice.getIsAlreadySelected() && isCorrectLetter) {
                 makeChoice(choice);
-                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_LETTER_REVEALED_EVENT, 0, 1);
                 return;
             }
         }
     }
 
     private void clearIncorrectLetters() {
-        String[] proposedChars = this.gameState.getCurrentProposedAnswer().split("|");
-        String[] currentAnswerChars = this.gameState.getCurrentAnswer().split("|");
+        char[] proposedChars = this.gameState.getCurrentProposedAnswer().toCharArray();
+        char[] currentAnswerChars = this.gameState.getCurrentAnswer().toCharArray();
 
-        int indexStartCorrection = 0;
+        int indexStartCorrection = proposedChars.length;
         for (int i = 0; i < proposedChars.length; ++i) {
-            String proposedChar = proposedChars[i];
-            String currentAnswerChar = currentAnswerChars[i];
+            String proposedChar = String.valueOf(proposedChars[i]);
+            String currentAnswerChar = String.valueOf(currentAnswerChars[i]);
             if (!proposedChar.equals(currentAnswerChar)) {
                 indexStartCorrection = i;
                 break;
@@ -249,7 +249,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
         // undo incorrect choices
         for (int i = indexStartCorrection; i < proposedChars.length; ++i) {
-            String proposedChar = proposedChars[i];
+            String proposedChar = String.valueOf(proposedChars[i]);
             undoChoice(proposedChar);
         }
 
