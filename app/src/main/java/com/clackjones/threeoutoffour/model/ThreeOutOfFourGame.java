@@ -15,6 +15,7 @@ public interface ThreeOutOfFourGame {
 
     final int HINT_LETTER_REMOVED_COINS_REQUIRED = 10;
     final int HINT_LETTER_REVEALED_COINS_REQUIRED = 35;
+    final int ROUND_SCORE_INCREMENT = 5;
 
 
     /**
