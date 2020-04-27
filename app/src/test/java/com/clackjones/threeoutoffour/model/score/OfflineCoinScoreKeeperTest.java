@@ -110,6 +110,34 @@ public class OfflineCoinScoreKeeperTest {
     }
 
     @Test
+    public void shouldDecreaseScoreBy150IfSkipRoundHint() {
+        // given
+        OfflineCoinScoreKeeper offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
+        Integer initialScore = 160;
+        offlineCoinScoreKeeper.setCoinScore(initialScore);
+
+        PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+        propertyChangeSupport.addPropertyChangeListener(ThreeOutOfFourGame.HINT_SKIP_ROUND_EVENT, offlineCoinScoreKeeper);
+
+        final Boolean[] isCoinScoreChangedEvtCalled = {false};
+        offlineCoinScoreKeeper.addPropertyChangeListener(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                isCoinScoreChangedEvtCalled[0] = true;
+            }
+        });
+
+        // when
+        propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_SKIP_ROUND_EVENT, 1, 2);
+
+        // then
+        Integer scoreIncrement = offlineCoinScoreKeeper.getCoinScore() - initialScore;
+        assertThat(scoreIncrement, equalTo(-150));
+
+        assertThat(isCoinScoreChangedEvtCalled[0], equalTo(true));
+    }
+
+    @Test
     @Ignore
     public void shouldIncreaseScoreWhenAdWatched() {
         fail("Not yet implemented");
