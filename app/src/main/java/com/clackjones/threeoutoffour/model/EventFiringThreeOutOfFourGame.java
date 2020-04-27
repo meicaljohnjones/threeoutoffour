@@ -193,9 +193,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void performRemoveALetterHint() throws InsufficientCoinScoreException {
-        if (this.coinScoreKeeper.getCoinScore() < ThreeOutOfFourGame.HINT_LETTER_REMOVED_COINS_REQUIRED) {
-            throw new InsufficientCoinScoreException();
-        }
+        throwExceptionIfInsufficientFunds(ThreeOutOfFourGame.HINT_LETTER_REMOVED_COINS_REQUIRED);
 
         for (ThreeOutOfFourChoice choice : getChoices()) {
             boolean isLetterInAnswer = this.gameState.getCurrentAnswer().contains(choice.getValue());
@@ -211,9 +209,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void performRevealALetterHint() throws InsufficientCoinScoreException {
-        if (this.coinScoreKeeper.getCoinScore() < ThreeOutOfFourGame.HINT_LETTER_REVEALED_COINS_REQUIRED) {
-            throw new InsufficientCoinScoreException();
-        }
+        throwExceptionIfInsufficientFunds(ThreeOutOfFourGame.HINT_LETTER_REVEALED_COINS_REQUIRED);
 
         clearIncorrectLetters();
 
@@ -266,4 +262,20 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
             }
         }
     }
+
+    @Override
+    public void performSkipRoundHint() throws InsufficientCoinScoreException {
+        throwExceptionIfInsufficientFunds(ThreeOutOfFourGame.HINT_SKIP_ROUND_COINS_REQUIRED);
+
+        incrementRound();
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, 0, 1);
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_SKIP_ROUND_EVENT, 0, 1);
+    }
+
+    private void throwExceptionIfInsufficientFunds(int requiredCoinCount) throws InsufficientCoinScoreException {
+        if (this.coinScoreKeeper.getCoinScore() < requiredCoinCount) {
+            throw new InsufficientCoinScoreException();
+        }
+    }
+
 }

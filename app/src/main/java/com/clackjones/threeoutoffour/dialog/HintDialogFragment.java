@@ -38,6 +38,13 @@ public class HintDialogFragment extends DialogFragment {
                                 } catch (InsufficientCoinScoreException e) {
                                     showToast();
                                 }
+                            case 2:
+                                // skip round
+                                try {
+                                    game.performSkipRoundHint();
+                                } catch (InsufficientCoinScoreException e) {
+                                    showToast();
+                                }
                             default:
                                 return;
                         }

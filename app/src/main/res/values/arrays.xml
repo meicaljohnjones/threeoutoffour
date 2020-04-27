@@ -3,5 +3,6 @@
     <string-array name="hint_types">
         <item>Remove Letter</item>
         <item>Reveal a Letter</item>
+        <item>Skip Round</item>
     </string-array>
 </resources>

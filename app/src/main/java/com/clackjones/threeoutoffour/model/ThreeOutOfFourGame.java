@@ -16,6 +16,8 @@ public interface ThreeOutOfFourGame {
     final int HINT_LETTER_REMOVED_COINS_REQUIRED = 10;
     final int HINT_LETTER_REVEALED_COINS_REQUIRED = 35;
     final int ROUND_SCORE_INCREMENT = 5;
+    Integer HINT_SKIP_ROUND_COINS_REQUIRED = 150;
+    String HINT_SKIP_ROUND_EVENT = "HINT_SKIP_ROUND_EVENT";
 
 
     /**
@@ -103,4 +105,6 @@ public interface ThreeOutOfFourGame {
     void performRemoveALetterHint() throws InsufficientCoinScoreException;
 
     void performRevealALetterHint() throws InsufficientCoinScoreException;
+
+    void performSkipRoundHint() throws InsufficientCoinScoreException;
 }
