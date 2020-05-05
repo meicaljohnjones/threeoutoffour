@@ -71,23 +71,7 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
             }
         });
 
-        // test ad
-        rewardedAd = new RewardedAd(this,
-                "ca-app-pub-3940256099942544/5224354917"); // TODO: change to real ID for app
-
-        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
-            @Override
-            public void onRewardedAdLoaded() {
-                // Ad successfully loaded.
-            }
-
-            @Override
-            public void onRewardedAdFailedToLoad(int errorCode) {
-                // Ad failed to load.
-            }
-        };
-        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
-
+        rewardedAd = createAndLoadRewardedAd();
     }
 
     @Override
@@ -233,35 +217,48 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         hintDialogFragment.show(getSupportFragmentManager(), "HintDialogFragment");
     }
 
-    // TODO: put in good place
-    // TODO: Load another add if one is watched
-    // TODO: read from link https://developers.google.com/admob/android/rewarded-ads
     public void showAd(View view) {
         if (rewardedAd.isLoaded()) {
             RewardedAdCallback adCallback = new RewardedAdCallback() {
                 @Override
                 public void onRewardedAdOpened() {
-                    // Ad opened.
                 }
 
                 @Override
                 public void onRewardedAdClosed() {
-                    System.out.println("Ad closed.");
+                    rewardedAd = createAndLoadRewardedAd();
                 }
 
                 @Override
                 public void onUserEarnedReward(@NonNull RewardItem reward) {
-                    System.out.println("User earned reward.");
+                    offlineCoinScoreKeeper.addCoins(ThreeOutOfFourGame.WATCHED_AD_COINS);
                 }
 
                 @Override
                 public void onRewardedAdFailedToShow(int errorCode) {
-                    System.out.println("Ad failed to display.");
                 }
             };
             rewardedAd.show(this, adCallback);
         } else {
             System.out.println("The rewarded ad wasn't loaded yet.");
         }
+    }
+
+    public RewardedAd createAndLoadRewardedAd() {
+        RewardedAd rewardedAd = new RewardedAd(this,
+                "ca-app-pub-3940256099942544/5224354917"); // TODO: this is just a test ad - replace with actual;
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
+            @Override
+            public void onRewardedAdLoaded() {
+                // Ad successfully loaded.
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(int errorCode) {
+                // Ad failed to load.
+            }
+        };
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+        return rewardedAd;
     }
 }

@@ -31,6 +31,7 @@ public class HintDialogFragment extends DialogFragment {
                                 } catch (InsufficientCoinScoreException e) {
                                     showToast();
                                 }
+                                break;
                             case 1:
                                 // remove a letter
                                 try {
@@ -38,6 +39,7 @@ public class HintDialogFragment extends DialogFragment {
                                 } catch (InsufficientCoinScoreException e) {
                                     showToast();
                                 }
+                                break;
                             case 2:
                                 // skip round
                                 try {
@@ -45,6 +47,7 @@ public class HintDialogFragment extends DialogFragment {
                                 } catch (InsufficientCoinScoreException e) {
                                     showToast();
                                 }
+                                break;
                             default:
                                 return;
                         }

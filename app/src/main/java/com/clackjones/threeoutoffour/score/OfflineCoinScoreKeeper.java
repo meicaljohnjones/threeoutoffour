@@ -47,7 +47,7 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
         }
     }
 
-    private void addCoins(Integer numCoins) {
+    public void addCoins(Integer numCoins) {
         int oldCoinScore = this.coinScore;
         this.coinScore = this.coinScore + numCoins;
         this.recitfyCoinScore();
