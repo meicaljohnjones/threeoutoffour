@@ -116,10 +116,10 @@
 
         <TextView
             android:id="@+id/textTitle"
-            android:layout_width="167dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/fredokaone"
             android:gravity="left"
@@ -128,18 +128,32 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/Hint"
-            android:layout_width="93dp"
+            android:id="@+id/WatchAd"
+            android:layout_width="118dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/fredokaone"
-            android:gravity="right"
-            android:onClick="showHintsMenu"
-            android:text="Hint"
+            android:gravity="center"
+            android:onClick="showAd"
+            android:text="Watch Ad"
             android:textColor="#FFF"
             android:textSize="24sp" />
+
+        <TextView
+        android:id="@+id/Hint"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/fredokaone"
+        android:gravity="center"
+        android:onClick="showHintsMenu"
+        android:text="Hint"
+        android:textColor="#FFF"
+        android:textSize="24sp" />
     </LinearLayout>
 
     <com.google.android.flexbox.FlexboxLayout
