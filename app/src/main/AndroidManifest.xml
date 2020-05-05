@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"    package="com.clackjones.threeoutoffour">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.clackjones.threeoutoffour">
 
     <application
         android:allowBackup="true"
@@ -16,6 +18,9 @@
         </activity>
         <activity android:name=".activity.WinActivity"></activity>
         <activity android:name=".activity.GameActivity"></activity>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6838795505663105~9064649532" />
     </application>
 
 </manifest>

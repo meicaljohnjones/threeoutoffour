@@ -2,14 +2,16 @@ package com.clackjones.threeoutoffour.activity;
 
 import android.content.Intent;
 import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.clackjones.threeoutoffour.R;
 import com.clackjones.threeoutoffour.dialog.HintDialogFragment;
@@ -27,12 +29,22 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+
 public class GameActivity extends AppCompatActivity implements PropertyChangeListener {
     private static final float OPAQUE = 1f;
     private static final float TRANSPARENT = 0f;
 
     private ThreeOutOfFourGame threeOutOfFourGame;
     private OfflineCoinScoreKeeper offlineCoinScoreKeeper;
+    private RewardedAd rewardedAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +64,30 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
         populateUI();
         setSupportActionBar(myToolbar);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        // test ad
+        rewardedAd = new RewardedAd(this,
+                "ca-app-pub-3940256099942544/5224354917"); // TODO: change to real ID for app
+
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
+            @Override
+            public void onRewardedAdLoaded() {
+                // Ad successfully loaded.
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(int errorCode) {
+                // Ad failed to load.
+            }
+        };
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+
     }
 
     @Override
@@ -195,5 +231,37 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         HintDialogFragment hintDialogFragment = new HintDialogFragment();
         hintDialogFragment.setGame(this.threeOutOfFourGame);
         hintDialogFragment.show(getSupportFragmentManager(), "HintDialogFragment");
+    }
+
+    // TODO: put in good place
+    // TODO: Load another add if one is watched
+    // TODO: read from link https://developers.google.com/admob/android/rewarded-ads
+    public void showAd(View view) {
+        if (rewardedAd.isLoaded()) {
+            RewardedAdCallback adCallback = new RewardedAdCallback() {
+                @Override
+                public void onRewardedAdOpened() {
+                    // Ad opened.
+                }
+
+                @Override
+                public void onRewardedAdClosed() {
+                    System.out.println("Ad closed.");
+                }
+
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem reward) {
+                    System.out.println("User earned reward.");
+                }
+
+                @Override
+                public void onRewardedAdFailedToShow(int errorCode) {
+                    System.out.println("Ad failed to display.");
+                }
+            };
+            rewardedAd.show(this, adCallback);
+        } else {
+            System.out.println("The rewarded ad wasn't loaded yet.");
+        }
     }
 }
