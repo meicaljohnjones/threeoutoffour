@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,158 +18,152 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title=''
         app:titleTextColor="#fff"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/bgquestion"
-        android:gravity="center"
-        android:orientation="vertical">
+    <ImageView
+        android:id="@+id/topLeftImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:cropToPadding="false"
+        android:scaleType="fitStart"
 
-        <TextView
-            android:id="@+id/textQuestion"
-            android:layout_width="336dp"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/topRightImage"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginTop="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/topRightImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:cropToPadding="false"
+        android:scaleType="fitStart"
+
+        app:layout_constraintStart_toEndOf="@+id/topLeftImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topLeftImage"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        />
+
+    <ImageView
+        android:id="@+id/bottomLeftImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_weight="0"
+        android:cropToPadding="false"
+        android:scaleType="fitStart"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bottomRightImage"
+        app:layout_constraintTop_toBottomOf="@+id/topLeftImage"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        />
+
+    <ImageView
+        android:id="@+id/bottomRightImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_weight="0"
+        android:scaleType="fitStart"
+
+        app:layout_constraintStart_toEndOf="@+id/bottomLeftImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottomLeftImage"
+        />
+
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_height="35dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/bgpurple"
+            android:clickable="false"
+            android:focusable="false"
             android:fontFamily="@font/fredokaone"
-            android:text="Which Word Represents Three of the Four Photos?"
-            android:textAlignment="center"
             android:textColor="#332FA2"
-            android:textSize="22sp"
-            android:visibility="visible" />
-    </LinearLayout>
+            android:textSize="20sp"
+            android:padding="5dp"
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottomLeftImage"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+
+            />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="5dip"
-        android:paddingBottom="0dip">
-
-        <ImageView
-            android:id="@+id/topLeftImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_weight="0"
-            android:cropToPadding="false"
-            android:scaleType="fitStart" />
-
-        <ImageView
-            android:id="@+id/topRightImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_weight="0"
-            android:scaleType="fitStart" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="0dip"
-        android:paddingBottom="5dip">
-
-        <ImageView
-            android:id="@+id/bottomLeftImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_weight="0"
-            android:cropToPadding="false"
-            android:scaleType="fitStart" />
-
-        <ImageView
-            android:id="@+id/bottomRightImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_weight="0"
-            android:scaleType="fitStart" />
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="355dp"
-        android:layout_height="56dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/bgpurple"
-        android:clickable="false"
-        android:focusable="false"
         android:fontFamily="@font/fredokaone"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="#332FA2"
-        android:textSize="32sp" />
+        android:text=""
+        android:textColor="#FFF"
+        android:textSize="20sp"
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/WatchAd"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintHorizontal_chainStyle="packed"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        />
+
+    <TextView
+        android:id="@+id/WatchAd"
+        android:layout_width="118dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="0dip"
-        android:paddingBottom="0dip">
+        android:fontFamily="@font/fredokaone"
+        android:onClick="showAd"
+        android:text="Watch Ad"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textTitle"
+        app:layout_constraintTop_toTopOf="@+id/textTitle"
+        />
 
-        <TextView
-            android:id="@+id/textTitle"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/fredokaone"
-            android:gravity="left"
-            android:text=""
-            android:textColor="#FFF"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/WatchAd"
-            android:layout_width="118dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/fredokaone"
-            android:gravity="center"
-            android:onClick="showAd"
-            android:text="Watch Ad"
-            android:textColor="#FFF"
-            android:textSize="24sp" />
-
-        <TextView
+    <TextView
         android:id="@+id/Hint"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="16dp"
         android:fontFamily="@font/fredokaone"
-        android:gravity="center"
         android:onClick="showHintsMenu"
         android:text="Hint"
         android:textColor="#FFF"
-        android:textSize="24sp" />
-    </LinearLayout>
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toEndOf="@+id/WatchAd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/WatchAd"
+        />
 
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/choiceGrid"
-        android:layout_width="match_parent"
+        android:layout_width="336dp"
         android:layout_height="140dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
         app:alignContent="stretch"
         app:alignItems="stretch"
-        app:flexWrap="wrap">
+        app:flexWrap="wrap"
+
+        app:layout_constraintTop_toBottomOf="@+id/textTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        >
 
         <TextView
             android:id="@+id/choice00"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -184,8 +178,8 @@
 
         <TextView
             android:id="@+id/choice01"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -200,8 +194,8 @@
 
         <TextView
             android:id="@+id/choice02"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -216,8 +210,8 @@
 
         <TextView
             android:id="@+id/choice03"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -232,8 +226,8 @@
 
         <TextView
             android:id="@+id/choice04"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -248,8 +242,8 @@
 
         <TextView
             android:id="@+id/choice05"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -263,8 +257,8 @@
 
         <TextView
             android:id="@+id/choice06"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -278,8 +272,8 @@
 
         <TextView
             android:id="@+id/choice07"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -293,8 +287,8 @@
 
         <TextView
             android:id="@+id/choice08"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -308,8 +302,8 @@
 
         <TextView
             android:id="@+id/choice09"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -322,4 +316,4 @@
             />
     </com.google.android.flexbox.FlexboxLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
