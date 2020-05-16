@@ -158,24 +158,23 @@
         app:layout_constraintTop_toTopOf="@+id/WatchAd"
         />
 
-    <com.google.android.flexbox.FlexboxLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/choiceGrid"
-        android:layout_width="336dp"
-        android:layout_height="140dp"
-        app:alignContent="stretch"
-        app:alignItems="stretch"
-        app:flexWrap="wrap"
-
-        app:layout_constraintTop_toBottomOf="@+id/textTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/textTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.90"
+        app:layout_constraintHeight_percent="0.20"
+        android:layout_marginTop="8dp" >
 
         <TextView
             android:id="@+id/choice00"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -183,15 +182,20 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            android:layout_marginBottom="7dp"
-            />
+
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.17" />
+
 
         <TextView
             android:id="@+id/choice01"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -199,15 +203,19 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            android:layout_marginBottom="7dp"
-            />
+
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice00"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.17" />
 
         <TextView
             android:id="@+id/choice02"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -215,15 +223,19 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            android:layout_marginBottom="7dp"
-            />
+
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice01"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.17" />
 
         <TextView
             android:id="@+id/choice03"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -231,15 +243,19 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            android:layout_marginBottom="7dp"
-            />
+
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice02"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.17" />
 
         <TextView
             android:id="@+id/choice04"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
@@ -247,85 +263,117 @@
             android:text="\?"
             android:textColor="@color/colorPurple"
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            android:layout_marginBottom="7dp"
-            />
+
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice03"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.17" />
+
 
         <TextView
             android:id="@+id/choice05"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
             android:textColor="@color/colorPurple"
+
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            />
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choice00"
+            app:layout_constraintWidth_percent="0.17" />
 
         <TextView
             android:id="@+id/choice06"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
             android:textColor="@color/colorPurple"
+
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            />
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice05"
+            app:layout_constraintTop_toBottomOf="@+id/choice00"
+            app:layout_constraintWidth_percent="0.17" />
 
         <TextView
             android:id="@+id/choice07"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
             android:textColor="@color/colorPurple"
+
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            />
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice06"
+            app:layout_constraintTop_toBottomOf="@+id/choice00"
+            app:layout_constraintWidth_percent="0.17" />
 
         <TextView
             android:id="@+id/choice08"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
             android:textColor="@color/colorPurple"
+
             android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            />
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice07"
+            app:layout_constraintTop_toBottomOf="@+id/choice00"
+            app:layout_constraintWidth_percent="0.17" />
 
         <TextView
             android:id="@+id/choice09"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
             android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
             android:textColor="@color/colorPurple"
-            android:textSize="32sp"
-            android:alpha="0"
-            android:layout_marginRight="7dp"
-            />
-    </com.google.android.flexbox.FlexboxLayout>
 
+            android:textSize="32sp"
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/choice08"
+            app:layout_constraintTop_toBottomOf="@+id/choice00"
+            app:layout_constraintWidth_percent="0.17" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.clackjones.threeoutoffour.R;
 import com.clackjones.threeoutoffour.dialog.HintDialogFragment;
@@ -145,11 +146,11 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void updateGrid() {
         List<ThreeOutOfFourChoice> choices = this.threeOutOfFourGame.getChoices();
-        FlexboxLayout choicesGrid = findViewById(R.id.choiceGrid);
+        ConstraintLayout choicesGrid = findViewById(R.id.choiceGrid);
 
         for (int choiceIdx = 0; choiceIdx < choices.size(); ++choiceIdx) {
             ThreeOutOfFourChoice choice = choices.get(choiceIdx);
-            TextView choiceNBtn = (TextView) choicesGrid.getFlexItemAt(choiceIdx);
+            TextView choiceNBtn = (TextView) choicesGrid.getChildAt(choiceIdx);
 
             setUpChoiceButton(choiceNBtn, choice);
         }
