@@ -27,8 +27,10 @@
 
     <ImageView
         android:id="@+id/topLeftImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.2"
         android:cropToPadding="false"
         android:scaleType="fitStart"
 
@@ -41,8 +43,10 @@
 
     <ImageView
         android:id="@+id/topRightImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.2"
         android:cropToPadding="false"
         android:scaleType="fitStart"
 
@@ -54,8 +58,10 @@
 
     <ImageView
         android:id="@+id/bottomLeftImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.2"
         android:layout_weight="0"
         android:cropToPadding="false"
         android:scaleType="fitStart"
@@ -68,8 +74,10 @@
 
     <ImageView
         android:id="@+id/bottomRightImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.2"
         android:layout_weight="0"
         android:scaleType="fitStart"
 
@@ -81,7 +89,8 @@
 
         <EditText
             android:id="@+id/editText"
-            android:layout_height="35dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.06"
             android:layout_width="match_parent"
             android:background="@drawable/bgpurple"
             android:clickable="false"
@@ -102,7 +111,8 @@
 
     <TextView
         android:id="@+id/textTitle"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent=".3"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredokaone"
         android:text=""
@@ -120,7 +130,8 @@
 
     <TextView
         android:id="@+id/WatchAd"
-        android:layout_width="118dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent=".3"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredokaone"
         android:onClick="showAd"
@@ -133,7 +144,8 @@
 
     <TextView
         android:id="@+id/Hint"
-        android:layout_width="48dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent=".20"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredokaone"
         android:onClick="showHintsMenu"
