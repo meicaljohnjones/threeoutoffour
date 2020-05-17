@@ -24,67 +24,74 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-
-    <ImageView
-        android:id="@+id/topLeftImage"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imageSquare"
         android:layout_width="0dp"
-        app:layout_constraintDimensionRatio="1:1"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
-        android:cropToPadding="false"
-        android:scaleType="fitStart"
+        android:layout_marginTop="8dp"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintDimensionRatio="1:1"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/topRightImage"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        android:layout_marginTop="10dp"
-        />
-
-    <ImageView
-        android:id="@+id/topRightImage"
-        android:layout_width="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
-        android:cropToPadding="false"
-        android:scaleType="fitStart"
-
-        app:layout_constraintStart_toEndOf="@+id/topLeftImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topLeftImage"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
 
-    <ImageView
-        android:id="@+id/bottomLeftImage"
-        android:layout_width="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
-        android:layout_weight="0"
-        android:cropToPadding="false"
-        android:scaleType="fitStart"
+        <ImageView
+            android:id="@+id/topLeftImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintDimensionRatio="1:1"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bottomRightImage"
-        app:layout_constraintTop_toBottomOf="@+id/topLeftImage"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        />
+            android:cropToPadding="false"
+            android:scaleType="fitStart"
 
-    <ImageView
-        android:id="@+id/bottomRightImage"
-        android:layout_width="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
-        android:layout_weight="0"
-        android:scaleType="fitStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-        app:layout_constraintStart_toEndOf="@+id/bottomLeftImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottomLeftImage"
-        />
+        <ImageView
+            android:id="@+id/topRightImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintDimensionRatio="1:1"
+
+            android:cropToPadding="false"
+            android:scaleType="fitStart"
+
+            app:layout_constraintStart_toEndOf="@+id/topLeftImage"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/bottomLeftImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintDimensionRatio="1:1"
+
+            android:cropToPadding="false"
+            android:scaleType="fitStart"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topLeftImage"
+            />
+
+        <ImageView
+            android:id="@+id/bottomRightImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintDimensionRatio="1:1"
+
+            android:cropToPadding="false"
+            android:scaleType="fitStart"
+
+            app:layout_constraintStart_toEndOf="@+id/bottomLeftImage"
+            app:layout_constraintTop_toBottomOf="@+id/topRightImage"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <EditText
@@ -102,7 +109,7 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottomLeftImage"
+            app:layout_constraintTop_toBottomOf="@+id/imageSquare"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
