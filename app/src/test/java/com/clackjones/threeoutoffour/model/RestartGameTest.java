@@ -39,10 +39,16 @@ public class RestartGameTest {
     @Test
     public void shouldResetRoundNumberAndRunInitializeOnRestart() {
         // given
-        Round testRound1 = new Round(1, -1, -1, -1, -1,
+        Round testRound1 = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
-        Round testRound2 = new Round(2, -2, -2, -2, -2,
+        Round testRound2 = new Round(2, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "iea",
                 new String[]{"i", "e", "a", "o", "u"});
 

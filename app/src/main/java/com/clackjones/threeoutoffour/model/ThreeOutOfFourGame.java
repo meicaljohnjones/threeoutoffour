@@ -49,22 +49,22 @@ public interface ThreeOutOfFourGame {
     /**
      * @return id of the current top left image
      */
-    public int getCurrTopLeftImage();
+    public byte[] getCurrTopLeftImage();
 
     /**
      * @return id of the current top right image
      */
-    public int getCurrTopRightImage();
+    public byte[] getCurrTopRightImage();
 
     /**
      * @return id of the current bottom left image
      */
-    public int getCurrBottomLeftImage();
+    public byte[] getCurrBottomLeftImage();
 
     /**
      * @return id of the current bottom right image
      */
-    public int getCurrBottomRightImage();
+    public byte[] getCurrBottomRightImage();
 
     /**
      * The letter chosen to guess the words matching all

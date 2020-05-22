@@ -5,7 +5,6 @@ import android.content.Context;
 import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
 import com.clackjones.threeoutoffour.state.GameStateProvider;
 
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -50,11 +49,17 @@ public class SkipRoundHintTest {
     public void shouldGoToNextRoundIfHaveEnoughCoins() throws InsufficientCoinScoreException {
         // given
         given(coinScoreKeeper.getCoinScore()).willReturn(ThreeOutOfFourGame.HINT_SKIP_ROUND_COINS_REQUIRED);
-        Round testRound1 = new Round(1, -1, -1, -1, -1,
+        Round testRound1 = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
 
-        Round testRound2 = new Round(2, -1, -1, -1, -1,
+        Round testRound2 = new Round(2, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
 
@@ -99,11 +104,17 @@ public class SkipRoundHintTest {
         // given
         int insufficientCoins = ThreeOutOfFourGame.HINT_SKIP_ROUND_COINS_REQUIRED - 1;
         given(coinScoreKeeper.getCoinScore()).willReturn(insufficientCoins);
-        Round testRound1 = new Round(1, -1, -1, -1, -1,
+        Round testRound1 = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
 
-        Round testRound2 = new Round(2, -1, -1, -1, -1,
+        Round testRound2 = new Round(2, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
 

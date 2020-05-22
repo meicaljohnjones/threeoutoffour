@@ -6,17 +6,17 @@ public class Round {
     private int roundNumber;
 
     //4 images
-    private int topLeftImage;
-    private int topRightImage;
-    private int bottomLeftImage;
-    private int bottomRightImage;
+    private byte[] topLeftImage;
+    private byte[] topRightImage;
+    private byte[] bottomLeftImage;
+    private byte[] bottomRightImage;
 
     //solution
     private String answer;
     private String[] randomLetters;
 
     //runs when new round object created
-    public Round(int roundNumber, int topLeftImage, int topRightImage, int bottomLeftImage, int bottomRightImage,
+    public Round(int roundNumber, byte[] topLeftImage, byte[] topRightImage, byte[] bottomLeftImage, byte[] bottomRightImage,
                  String answer, String[] randomLetters) {
         this.roundNumber = roundNumber;
         this.topLeftImage = topLeftImage;
@@ -27,19 +27,19 @@ public class Round {
         this.randomLetters = randomLetters;
     }
 
-    public int getTopLeftImage() {
+    public byte[] getTopLeftImage() {
         return topLeftImage;
     }
 
-    public int getTopRightImage() {
+    public byte[] getTopRightImage() {
         return topRightImage;
     }
 
-    public int getBottomLeftImage() {
+    public byte[] getBottomLeftImage() {
         return bottomLeftImage;
     }
 
-    public int getBottomRightImage() {
+    public byte[] getBottomRightImage() {
         return bottomRightImage;
     }
 

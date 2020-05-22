@@ -66,22 +66,22 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     @Override
-    public int getCurrTopLeftImage() {
+    public byte[] getCurrTopLeftImage() {
         return this.gameState.getCurrTopLeftImage();
     }
 
     @Override
-    public int getCurrTopRightImage() {
+    public byte[] getCurrTopRightImage() {
         return this.gameState.getCurrTopRightImage();
     }
 
     @Override
-    public int getCurrBottomLeftImage() {
+    public byte[] getCurrBottomLeftImage() {
         return this.gameState.getCurrBottomLeftImage();
     }
 
     @Override
-    public int getCurrBottomRightImage() {
+    public byte[] getCurrBottomRightImage() {
         return this.gameState.getCurrBottomRightImage();
     }
 
@@ -277,5 +277,4 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
             throw new InsufficientCoinScoreException();
         }
     }
-
 }

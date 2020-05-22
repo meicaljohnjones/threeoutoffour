@@ -47,7 +47,10 @@ public class RevealALetterTest {
     public void shouldClearAllLettersIfFirstIncorrectAndPlaceFirstCorrectLetter() throws InsufficientCoinScoreException {
         // given
         given(coinScoreKeeper.getCoinScore()).willReturn(ThreeOutOfFourGame.HINT_LETTER_REVEALED_COINS_REQUIRED);
-        Round testRound1 = new Round(1, -1, -1, -1, -1,
+        Round testRound1 = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
 
@@ -88,7 +91,10 @@ public class RevealALetterTest {
     public void shouldClearAllButFirstLetterIfFirstCorrectAndPlaceSecondCorrectLetter() throws InsufficientCoinScoreException {
         // given
         given(coinScoreKeeper.getCoinScore()).willReturn(ThreeOutOfFourGame.HINT_LETTER_REVEALED_COINS_REQUIRED);
-        Round testRound1 = new Round(1, -1, -1, -1, -1,
+        Round testRound1 = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
 
@@ -139,7 +145,10 @@ public class RevealALetterTest {
 
         final int insufficientCoinSum = ThreeOutOfFourGame.HINT_LETTER_REMOVED_COINS_REQUIRED - 1;
         given(coinScoreKeeper.getCoinScore()).willReturn(insufficientCoinSum);
-        Round testRound1 = new Round(1, -1, -1, -1, -1,
+        Round testRound1 = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
 

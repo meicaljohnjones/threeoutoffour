@@ -9,10 +9,10 @@ public class GameState implements java.io.Serializable {
     private String currentAnswer;
 
     //4 images
-    private int currTopLeftImage;
-    private int currTopRightImage;
-    private int currBottomLeftImage;
-    private int currBottomRightImage;
+    private byte[] currTopLeftImage;
+    private byte[] currTopRightImage;
+    private byte[] currBottomLeftImage;
+    private byte[] currBottomRightImage;
 
     private List<ThreeOutOfFourChoice> currentChoices;
 
@@ -22,10 +22,10 @@ public class GameState implements java.io.Serializable {
         currentAnswer = "";
         currentProposedAnswer = "";
 
-        currTopLeftImage = -1;
-        currTopRightImage = -1;
-        currBottomLeftImage = -1;
-        currBottomRightImage = -1;
+        currTopLeftImage = new byte[]{};
+        currTopRightImage = new byte[]{};
+        currBottomLeftImage = new byte[]{};
+        currBottomRightImage = new byte[]{};
 
         currentChoices = new ArrayList<>();
     }
@@ -54,35 +54,35 @@ public class GameState implements java.io.Serializable {
         this.currentAnswer = currentAnswer;
     }
 
-    public int getCurrTopLeftImage() {
+    public byte[] getCurrTopLeftImage() {
         return currTopLeftImage;
     }
 
-    public void setCurrTopLeftImage(int currTopLeftImage) {
+    public void setCurrTopLeftImage(byte[] currTopLeftImage) {
         this.currTopLeftImage = currTopLeftImage;
     }
 
-    public int getCurrTopRightImage() {
+    public byte[] getCurrTopRightImage() {
         return currTopRightImage;
     }
 
-    public void setCurrTopRightImage(int currTopRightImage) {
+    public void setCurrTopRightImage(byte[] currTopRightImage) {
         this.currTopRightImage = currTopRightImage;
     }
 
-    public int getCurrBottomLeftImage() {
+    public byte[] getCurrBottomLeftImage() {
         return currBottomLeftImage;
     }
 
-    public void setCurrBottomLeftImage(int currBottomLeftImage) {
+    public void setCurrBottomLeftImage(byte[] currBottomLeftImage) {
         this.currBottomLeftImage = currBottomLeftImage;
     }
 
-    public int getCurrBottomRightImage() {
+    public byte[] getCurrBottomRightImage() {
         return currBottomRightImage;
     }
 
-    public void setCurrBottomRightImage(int currBottomRightImage) {
+    public void setCurrBottomRightImage(byte[] currBottomRightImage) {
         this.currBottomRightImage = currBottomRightImage;
     }
 

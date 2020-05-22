@@ -49,7 +49,10 @@ public class EventFiringThreeOutOfFourGameTest {
             }
         };
 
-        Round testRound = new Round(1, 42, 43, 44, 45,
+        Round testRound = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
@@ -80,15 +83,18 @@ public class EventFiringThreeOutOfFourGameTest {
 
         assertThat(isRoundNumberEventFired[0], equalTo(true));
 
-        assertThat(game.getCurrBottomLeftImage(), not(equalTo(-1)));
-        assertThat(game.getCurrBottomRightImage(), not(equalTo(-1)));
-        assertThat(game.getCurrTopLeftImage(), not(equalTo(-1)));
-        assertThat(game.getCurrTopRightImage(), not(equalTo(-1)));
+        assertThat(game.getCurrBottomLeftImage().length, not(equalTo(0)));
+        assertThat(game.getCurrBottomRightImage().length, not(equalTo(0)));
+        assertThat(game.getCurrTopLeftImage().length, not(equalTo(0)));
+        assertThat(game.getCurrTopRightImage().length, not(equalTo(0)));
     }
 
     @Test
     public void shouldNotIncrementIfInitializeCalledTwice() {
-        Round testRound = new Round(1, -1, -1, -1, -1,
+        Round testRound = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
@@ -133,7 +139,10 @@ public class EventFiringThreeOutOfFourGameTest {
             }
         };
 
-        Round testRound = new Round(1, 42, 43, 44, 45,
+        Round testRound = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
@@ -184,7 +193,10 @@ public class EventFiringThreeOutOfFourGameTest {
             }
         };
 
-        Round testRound = new Round(1, 42, 43, 44, 45,
+        Round testRound = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "aei",
                 new String[]{"a", "e", "i", "o", "u"});
         given(roundProvider.getNextRound(0)).willReturn(testRound);
@@ -216,7 +228,10 @@ public class EventFiringThreeOutOfFourGameTest {
     @Test
     public void shouldFireIncorrectProposedAnswerEventWhenProposedAnswerCompleteAndIncorrectAndAllGameValuesReset() {
         // given
-        Round testRound = new Round(1, -1, -1, -1, -1,
+        Round testRound = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "a",
                 new String[]{"a", "e", "i", "o", "u"});
 
@@ -255,11 +270,17 @@ public class EventFiringThreeOutOfFourGameTest {
     @Test
     public void shouldFireRoundNumberIncrementedEventAndUpdateVariablesWhenProposedAnswerIsCorrect() {
         // given
-        Round testRound1 = new Round(1, -1, -1, -1, -1,
+        Round testRound1 = new Round(1, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "a",
                 new String[]{"a", "e", "i", "o", "u"});
 
-        Round testRound2 = new Round(2, -2, -2, -2, -2,
+        Round testRound2 = new Round(2, "image1".getBytes(),
+                "image2".getBytes(),
+                "image3".getBytes(),
+                "image4".getBytes(),
                 "ee",
                 new String[]{"e", "i", "o", "u", "a", "a"});
         given(roundProvider.getNextRound(0)).willReturn(testRound1);
@@ -300,10 +321,10 @@ public class EventFiringThreeOutOfFourGameTest {
         // proposed answer empty -proposed answer changed event
         assertThat(game.getProposedAnswer(), equalTo(""));
 
-        assertThat(game.getCurrTopRightImage(), equalTo(-2));
-        assertThat(game.getCurrTopLeftImage(), equalTo(-2));
-        assertThat(game.getCurrBottomRightImage(), equalTo(-2));
-        assertThat(game.getCurrBottomRightImage(), equalTo(-2));
+        assertThat(game.getCurrTopRightImage().length, not(equalTo(0)));
+        assertThat(game.getCurrTopLeftImage().length,not(equalTo(0)));
+        assertThat(game.getCurrBottomRightImage().length, not(equalTo(0)));
+        assertThat(game.getCurrBottomRightImage().length, not(equalTo(0)));
     }
 
 }

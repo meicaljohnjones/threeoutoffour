@@ -1,6 +1,8 @@
 package com.clackjones.threeoutoffour.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.PersistableBundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -138,10 +140,14 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         ImageView bottomRightImage = (ImageView) findViewById(R.id.bottomRightImage);
 
         //for each ImageView, set to each of 4
-        topLeftImage.setBackgroundResource(this.threeOutOfFourGame.getCurrTopLeftImage());
-        topRightImage.setBackgroundResource(this.threeOutOfFourGame.getCurrTopRightImage());
-        bottomLeftImage.setBackgroundResource(this.threeOutOfFourGame.getCurrBottomLeftImage());
-        bottomRightImage.setBackgroundResource(this.threeOutOfFourGame.getCurrBottomRightImage());
+        topLeftImage.setImageBitmap(decodedStringToBitmap(this.threeOutOfFourGame.getCurrTopLeftImage()));
+        topRightImage.setImageBitmap(decodedStringToBitmap(this.threeOutOfFourGame.getCurrTopRightImage()));
+        bottomLeftImage.setImageBitmap(decodedStringToBitmap(this.threeOutOfFourGame.getCurrBottomLeftImage()));
+        bottomRightImage.setImageBitmap(decodedStringToBitmap(this.threeOutOfFourGame.getCurrBottomRightImage()));
+    }
+
+    private Bitmap decodedStringToBitmap(byte[] decodedString) {
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
 
     private void updateGrid() {
