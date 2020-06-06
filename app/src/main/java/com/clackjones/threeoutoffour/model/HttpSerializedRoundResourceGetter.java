@@ -65,6 +65,8 @@ public class HttpSerializedRoundResourceGetter implements SerializedRoundResourc
             while ((str = reader.readLine()) != null) {
                 filenames.add(str);
             }
+        } catch (IOException io) {
+            io.printStackTrace();
         } finally {
             conn.disconnect();
         }
