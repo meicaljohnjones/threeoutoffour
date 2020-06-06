@@ -1,9 +1,18 @@
 package com.clackjones.threeoutoffour.model;
 
 import android.content.Context;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -51,27 +60,35 @@ public class InternetGettingRoundProvider implements RoundProvider {
     public Round getNextRound(int lastRoundNumber) {
         int nextRoundIdx = lastRoundNumber + 1;
 
-        // TODO: if round not available,
-        //      check if rounds serialized to file (from below)
-
-        boolean isNextRoundNumberAvailable = this.rounds.containsKey(nextRoundIdx);
-        if (!isNextRoundNumberAvailable) {
-            // TODO: serialize below to file
-            // TODO: if internet disabled will fail
-                // Consider Executor fail after so many seconds and tell user to come back later or enable wifi
-            loadNextRoundsFromResource(nextRoundIdx);
+        // 1. try and load from memory
+        if (isRoundLoaded(nextRoundIdx)) {
+            return this.rounds.get(nextRoundIdx);
         }
 
-
-        boolean isNextRoundNumberAvailableAfterAttemptLoad = this.rounds.containsKey(nextRoundIdx);
-        if (!isNextRoundNumberAvailableAfterAttemptLoad) {
-            return null; // TODO: consider return Optional.None to indicate no more rounds
+        // 2. try and load from serialized file
+        loadRoundsFromFile();
+        if (isRoundLoaded(nextRoundIdx)) {
+            return this.rounds.get(nextRoundIdx);
         }
 
-        return rounds.get(nextRoundIdx);
+        // 3. now try and load from internet
+        loadNextRoundsFromResource(nextRoundIdx);
+        saveRoundsToFile();
+
+        if (isRoundLoaded(nextRoundIdx)) {
+            return this.rounds.get(nextRoundIdx);
+        }
+
+        // 4. give up, return null
+        return null;
     }
 
-    void loadNextRoundsFromResource(final Integer nextRoundIdx) {
+
+    private boolean isRoundLoaded(int nextRoundIdx) {
+        return this.rounds.containsKey(nextRoundIdx);
+    }
+
+    private void loadNextRoundsFromResource(final Integer nextRoundIdx) {
         Callable<Map<Integer, Round>> callableLoadRounds = new Callable<Map<Integer, Round>>() {
 
             @Override
@@ -92,8 +109,7 @@ public class InternetGettingRoundProvider implements RoundProvider {
         }
     }
 
-
-    Map<Integer, Round> loadNextRoundsFromResourceImpl(Integer nextRoundIdx) {
+    private Map<Integer, Round> loadNextRoundsFromResourceImpl(Integer nextRoundIdx) {
         try {
             InputStream roundsInputStream = null;
             try {
@@ -110,4 +126,44 @@ public class InternetGettingRoundProvider implements RoundProvider {
 
         return null;
     }
+
+    private void saveRoundsToFile() {
+        FileOutputStream privateAppFileOutputStream = null;
+        try {
+            try {
+                privateAppFileOutputStream = context.openFileOutput("current_rounds", Context.MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(privateAppFileOutputStream);
+                oos.writeObject(this.rounds);
+            } finally {
+                privateAppFileOutputStream.close();
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    private void loadRoundsFromFile() {
+        FileInputStream privateAppFileInputStream = null;
+        try {
+
+                File currentRoundsFile = context.getFileStreamPath("current_rounds");
+                if (!currentRoundsFile.exists()) {
+                    return;
+                }
+
+                privateAppFileInputStream = context.openFileInput("current_rounds");
+                ObjectInputStream objectInputStream = new ObjectInputStream(privateAppFileInputStream);
+                Map<Integer, Round> loadedRounds = (Map<Integer, Round>) objectInputStream.readObject();
+                this.rounds = loadedRounds;
+        } catch (IOException | ClassNotFoundException io) {
+            io.printStackTrace();
+        } finally {
+            try {
+                if (privateAppFileInputStream != null) privateAppFileInputStream.close();
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+        }
+    }
+
 }
