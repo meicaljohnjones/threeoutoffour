@@ -4,13 +4,13 @@ import android.content.Context;
 import com.clackjones.threeoutoffour.R;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.Map;
 
 public class FileBasedRoundProvider implements RoundProvider {
     private static FileBasedRoundProvider roundProvider;
     private final RoundsDeserializer roundsDeserializer;
     private Context context;
-    private List<Round> rounds;
+    private Map<Integer, Round> rounds;
 
 
     public FileBasedRoundProvider(Context context, RoundsDeserializer roundsDeserializer) {
@@ -33,7 +33,7 @@ public class FileBasedRoundProvider implements RoundProvider {
 
     @Override
     public Round getNextRound(int lastRoundNumber) {
-        int nextRoundIdx = lastRoundNumber;
+        int nextRoundIdx = lastRoundNumber + 1;
         return this.rounds.get(nextRoundIdx);
     }
 }

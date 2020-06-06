@@ -7,18 +7,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RoundsDeserializer {
-    public List<Round> readRounds(InputStream inputStream) {
+
+    // Todo convert to Map<Int, Round>
+    public Map<Integer, Round> readRounds(InputStream inputStream) {
         JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream));
 
-        List<Round> rounds = new ArrayList<>(20);
+        Map<Integer, Round> rounds = new HashMap<>(20);
 
         try {
             jsonReader.beginArray();
             while(jsonReader.hasNext()) {
-                rounds.add(readRound(jsonReader));
+                Round nextRound = readRound(jsonReader);
+                rounds.put(nextRound.getRoundNumber(), nextRound);
             }
             jsonReader.endArray();
         } catch (IOException io) {
