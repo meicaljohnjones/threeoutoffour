@@ -20,7 +20,7 @@ public class HttpSerializedRoundResourceGetter implements SerializedRoundResourc
 
         int indexOfCorrectFile = 0;
         for (int i = 0; i < roundFileIntervals.size(); ++i) {
-            IntegerInterval currInterval = roundFileIntervals.get(indexOfCorrectFile);
+            IntegerInterval currInterval = roundFileIntervals.get(i);
             if (currInterval.valInInterval(roundNumber)) {
                 indexOfCorrectFile = i;
                 break;
