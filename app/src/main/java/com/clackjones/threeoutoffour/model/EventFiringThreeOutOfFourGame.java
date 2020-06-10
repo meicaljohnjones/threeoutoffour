@@ -39,7 +39,6 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
             if (isNewGame) {
                 incrementRound();
-                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, 0, 1);
             }
             this.isInitialized = true;
         }
