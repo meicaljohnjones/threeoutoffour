@@ -100,10 +100,6 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
         this.gameState.setCurrentProposedAnswer(oldProposedAnswer + choice.getValue());
         int newLettersRemainingVal = this.getLettersRemaining();
 
-        this.propertyChangeSupport.fireIndexedPropertyChange(ThreeOutOfFourGame.CHOICE_MADE_EVENT, choiceIndex, choiceOldValue, choice);
-        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.LETTERS_REMAINING_DECREMENTED_EVENT, oldLettersRemainingVal, newLettersRemainingVal);
-        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.PROPOSED_ANSWER_CHANGED_EVENT, oldProposedAnswer, this.gameState.getCurrentProposedAnswer());
-
         boolean isEnoughLettersToMakeGuess = this.getLettersRemaining() == 0;
         if (isEnoughLettersToMakeGuess) {
             if (!isProposedAnswerCorrect()) {
@@ -114,6 +110,11 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
                 incrementRound();
                 this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, this.gameState.getCurrentRoundNumber() - 1, this.gameState.getCurrentRoundNumber());
             }
+        } else {
+            // fire normal events
+            this.propertyChangeSupport.fireIndexedPropertyChange(ThreeOutOfFourGame.CHOICE_MADE_EVENT, choiceIndex, choiceOldValue, choice);
+            this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.LETTERS_REMAINING_DECREMENTED_EVENT, oldLettersRemainingVal, newLettersRemainingVal);
+            this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.PROPOSED_ANSWER_CHANGED_EVENT, oldProposedAnswer, this.gameState.getCurrentProposedAnswer());
         }
 
         saveGame();
