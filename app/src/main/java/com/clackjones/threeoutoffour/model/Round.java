@@ -1,8 +1,9 @@
 package com.clackjones.threeoutoffour.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Round {
+public class Round implements Serializable {
     private int roundNumber;
 
     //4 images

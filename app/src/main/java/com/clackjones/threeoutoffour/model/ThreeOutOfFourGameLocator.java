@@ -10,7 +10,7 @@ public class ThreeOutOfFourGameLocator {
     private ThreeOutOfFourGame threeOutOfFourGame;
 
     private ThreeOutOfFourGameLocator(CoinScoreKeeper coinScoreKeeper, Context context) {
-        threeOutOfFourGame = new EventFiringThreeOutOfFourGame(FileBasedRoundProvider.getInstance(context),
+        threeOutOfFourGame = new EventFiringThreeOutOfFourGame(InternetGettingRoundProvider.getInstance(context),
                 SerializableGameStateProvider.getInstance(), coinScoreKeeper, context);
     }
 

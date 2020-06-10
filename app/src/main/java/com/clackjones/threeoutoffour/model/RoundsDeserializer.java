@@ -1,55 +1,36 @@
 package com.clackjones.threeoutoffour.model;
 
-import android.content.Context;
-import android.media.Image;
 import android.util.Base64;
 import android.util.JsonReader;
-
-import com.clackjones.threeoutoffour.R;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class FileBasedRoundProvider implements RoundProvider {
-    private static FileBasedRoundProvider roundProvider;
-    private Context context;
-    private List<Round> rounds;
+public class RoundsDeserializer {
 
+    // Todo convert to Map<Int, Round>
+    public Map<Integer, Round> readRounds(InputStream inputStream) {
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream));
 
-    public FileBasedRoundProvider(Context context) {
-        this.context = context;
-        this.rounds = new ArrayList<>(50);
-    }
-
-    public static FileBasedRoundProvider getInstance(Context context) {
-        if (FileBasedRoundProvider.roundProvider == null) {
-            FileBasedRoundProvider.roundProvider = new FileBasedRoundProvider(context);
-            FileBasedRoundProvider.roundProvider.initialize();
-        }
-        return FileBasedRoundProvider.roundProvider;
-    }
-
-
-    private void initialize() {
-        this.rounds.clear();
-
-        InputStream jsonInputStream = context.getResources().openRawResource(R.raw.rounds);
-
-        // read json stream
-        JsonReader reader = new JsonReader(new InputStreamReader(jsonInputStream));
+        Map<Integer, Round> rounds = new HashMap<>(20);
 
         try {
-            reader.beginArray();
-            while(reader.hasNext()) {
-                rounds.add(readRound(reader));
+            jsonReader.beginArray();
+            while(jsonReader.hasNext()) {
+                Round nextRound = readRound(jsonReader);
+                rounds.put(nextRound.getRoundNumber(), nextRound);
             }
-            reader.endArray();
+            jsonReader.endArray();
         } catch (IOException io) {
             io.printStackTrace();
         }
+
+        return rounds;
     }
 
     private Round readRound(JsonReader reader) throws IOException {
@@ -100,11 +81,5 @@ public class FileBasedRoundProvider implements RoundProvider {
 
         String[] randLetters = new String[randomLetters.size()];
         return randomLetters.toArray(randLetters);
-    }
-
-    @Override
-    public Round getNextRound(int lastRoundNumber) {
-        int nextRoundIdx = lastRoundNumber;
-        return this.rounds.get(nextRoundIdx);
     }
 }
