@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -57,18 +58,18 @@ public class InternetGettingRoundProvider implements RoundProvider {
     }
 
     @Override
-    public Round getNextRound(int lastRoundNumber) {
+    public Optional<Round> getNextRound(int lastRoundNumber) {
         int nextRoundIdx = lastRoundNumber + 1;
 
         // 1. try and load from memory
         if (isRoundLoaded(nextRoundIdx)) {
-            return this.rounds.get(nextRoundIdx);
+            return Optional.of(this.rounds.get(nextRoundIdx));
         }
 
         // 2. try and load from serialized file
         loadRoundsFromFile();
         if (isRoundLoaded(nextRoundIdx)) {
-            return this.rounds.get(nextRoundIdx);
+            return Optional.of(this.rounds.get(nextRoundIdx));
         }
 
         // 3. now try and load from internet
@@ -76,11 +77,11 @@ public class InternetGettingRoundProvider implements RoundProvider {
         saveRoundsToFile();
 
         if (isRoundLoaded(nextRoundIdx)) {
-            return this.rounds.get(nextRoundIdx);
+            return Optional.of(this.rounds.get(nextRoundIdx));
         }
 
         // 4. give up, return null
-        return null;
+        return Optional.empty();
     }
 
 

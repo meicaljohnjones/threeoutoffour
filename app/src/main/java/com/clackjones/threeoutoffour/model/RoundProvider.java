@@ -1,5 +1,7 @@
 package com.clackjones.threeoutoffour.model;
 
+import java.util.Optional;
+
 interface RoundProvider {
-    Round getNextRound(int lastRoundNumber);
+    Optional<Round> getNextRound(int lastRoundNumber);
 }

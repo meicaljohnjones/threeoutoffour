@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameState implements java.io.Serializable {
+    private boolean isAwaitingNextRound;
     private String currentProposedAnswer;
     private int currentRoundNumber;
     private String currentAnswer;
@@ -17,6 +18,7 @@ public class GameState implements java.io.Serializable {
     private List<ThreeOutOfFourChoice> currentChoices;
 
     public GameState() {
+        isAwaitingNextRound = false;
         currentRoundNumber = 0;
 
         currentAnswer = "";
@@ -28,6 +30,17 @@ public class GameState implements java.io.Serializable {
         currBottomRightImage = new byte[]{};
 
         currentChoices = new ArrayList<>();
+    }
+
+    public static GameState awaitingNewRounds(Integer currentRoundNumber) {
+        GameState gameState = new GameState();
+        gameState.currentRoundNumber = currentRoundNumber;
+        gameState.isAwaitingNextRound = true;
+        return gameState;
+    }
+
+    public boolean isAwaitingNextRound() {
+        return isAwaitingNextRound;
     }
 
     public String getCurrentProposedAnswer() {

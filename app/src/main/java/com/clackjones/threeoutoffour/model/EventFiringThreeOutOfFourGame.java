@@ -10,6 +10,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     final GameStateProvider gameStateProvider;
@@ -141,25 +142,35 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     private void incrementRound() {
-        Round nextRound = roundProvider.getNextRound(this.getCurrentRoundNumber());
+        Optional<Round> nextRoundOpt = roundProvider.getNextRound(this.getCurrentRoundNumber());
+        this.gameState = nextRoundOpt
+                .map(EventFiringThreeOutOfFourGame::roundToGameState)
+                .orElse(GameState.awaitingNewRounds(this.getCurrentRoundNumber()));
 
-        String[] choiceLetters = nextRound.getRandomLetters();
+        // TODO: in GameActivity, check for isAwaitingNewRounds - redirect to 'Wait for New Round' Activity
+    }
+
+    private static GameState roundToGameState(Round round) {
+        GameState gameState = new GameState();
+
+        String[] choiceLetters = round.getRandomLetters();
         List<ThreeOutOfFourChoice> choices = new ArrayList<>(choiceLetters.length);
         for (String letter : choiceLetters) {
             choices.add(new ThreeOutOfFourChoice(letter));
         }
-        this.gameState.setCurrentChoices(choices);
 
-        resetProposedAnswer();
-        this.gameState.setCurrentAnswer(nextRound.getAnswer());
+        gameState.setCurrentChoices(choices);
+        gameState.setCurrentProposedAnswer("");
+        gameState.setCurrentAnswer(round.getAnswer());
 
-        this.gameState.setCurrBottomLeftImage(nextRound.getBottomLeftImage());
-        this.gameState.setCurrBottomRightImage(nextRound.getBottomRightImage());
-        this.gameState.setCurrTopLeftImage(nextRound.getTopLeftImage());
-        this.gameState.setCurrTopRightImage(nextRound.getTopRightImage());
+        gameState.setCurrBottomLeftImage(round.getBottomLeftImage());
+        gameState.setCurrBottomRightImage(round.getBottomRightImage());
+        gameState.setCurrTopLeftImage(round.getTopLeftImage());
+        gameState.setCurrTopRightImage(round.getTopRightImage());
 
-        int oldRoundNumber = this.gameState.getCurrentRoundNumber();
-        this.gameState.setCurrentRoundNumber(nextRound.getRoundNumber());
+        gameState.setCurrentRoundNumber(round.getRoundNumber());
+
+        return gameState;
     }
 
     @Override
