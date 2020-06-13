@@ -59,6 +59,11 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         offlineCoinScoreKeeper = OfflineCoinScoreKeeperProvider.getInstance().loadOrCreate(this.getApplicationContext());
         this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance(offlineCoinScoreKeeper, this.getApplicationContext()).threeOutOfFourGame();
         threeOutOfFourGame.initialize();
+
+        if (threeOutOfFourGame.isAwaitingNextRound()) {
+            visitComeBackLaterScreen();
+        }
+
         threeOutOfFourGame.addPropertyChangeListener(this);
 
 
@@ -214,6 +219,11 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void visitWinScreen() {
         Intent intent = new Intent(this, WinActivity.class);
+        startActivity(intent);
+    }
+
+    private void visitComeBackLaterScreen() {
+        Intent intent = new Intent(this, ComeBackLaterActivity.class);
         startActivity(intent);
     }
 

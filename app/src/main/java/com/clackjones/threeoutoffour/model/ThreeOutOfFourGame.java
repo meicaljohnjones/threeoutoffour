@@ -26,6 +26,8 @@ public interface ThreeOutOfFourGame {
      */
     void initialize();
 
+    boolean isAwaitingNextRound();
+
     /**
      * @return an ordered list of all choices and their current state (active/inactive)
      */

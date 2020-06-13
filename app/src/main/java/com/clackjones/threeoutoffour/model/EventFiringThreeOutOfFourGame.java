@@ -36,13 +36,20 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     public void initialize() {
         if (!this.isInitialized) {
             this.gameState = gameStateProvider.loadGameStateOrCreateNew(this.context);
-            boolean isNewGame = this.gameState.getCurrentRoundNumber() == 0;
-
-            if (isNewGame) {
-                incrementRound();
-            }
             this.isInitialized = true;
         }
+
+        boolean isNewGame = this.gameState.getCurrentRoundNumber() == 0;
+        boolean isAwaitingNextRound = this.gameState.isAwaitingNextRound();
+
+        if (isNewGame || isAwaitingNextRound) {
+            incrementRound();
+        }
+    }
+
+    @Override
+    public boolean isAwaitingNextRound() {
+        return this.gameState.isAwaitingNextRound();
     }
 
     @Override
