@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.WinActivity"></activity>
+        <activity android:name=".activity.ComeBackLaterActivity"></activity>
         <activity android:name=".activity.GameActivity"></activity>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

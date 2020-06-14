@@ -59,6 +59,11 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         offlineCoinScoreKeeper = OfflineCoinScoreKeeperProvider.getInstance().loadOrCreate(this.getApplicationContext());
         this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance(offlineCoinScoreKeeper, this.getApplicationContext()).threeOutOfFourGame();
         threeOutOfFourGame.initialize();
+
+        if (threeOutOfFourGame.isAwaitingNextRound()) {
+            visitComeBackLaterScreen();
+        }
+
         threeOutOfFourGame.addPropertyChangeListener(this);
 
 
@@ -87,10 +92,10 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.reset_action:
-                ResetGameDialogFragment fragment = new ResetGameDialogFragment();
-                fragment.setGame(threeOutOfFourGame);
-                fragment.show(getSupportFragmentManager(), "reset");
-                return true;
+            ResetGameDialogFragment fragment = new ResetGameDialogFragment();
+            fragment.setGame(threeOutOfFourGame);
+            fragment.show(getSupportFragmentManager(), "reset");
+            return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -214,6 +219,11 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void visitWinScreen() {
         Intent intent = new Intent(this, WinActivity.class);
+        startActivity(intent);
+    }
+
+    private void visitComeBackLaterScreen() {
+        Intent intent = new Intent(this, ComeBackLaterActivity.class);
         startActivity(intent);
     }
 

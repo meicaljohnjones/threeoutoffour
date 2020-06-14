@@ -2,7 +2,7 @@
     <string name="app_name">ThreeOutofFour</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="confirm_reset_game">Reset game?</string>
+    <string name="confirm_reset_game">Are you sure you want to reset the game?</string>
     <string name="hints">Hints</string>
     <string name="insufficient_credit">Insufficient coins. Watch an ad to get more coins!</string>
 </resources>
