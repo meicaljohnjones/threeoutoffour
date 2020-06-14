@@ -92,10 +92,10 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.reset_action:
-                ResetGameDialogFragment fragment = new ResetGameDialogFragment();
-                fragment.setGame(threeOutOfFourGame);
-                fragment.show(getSupportFragmentManager(), "reset");
-                return true;
+            ResetGameDialogFragment fragment = new ResetGameDialogFragment();
+            fragment.setGame(threeOutOfFourGame);
+            fragment.show(getSupportFragmentManager(), "reset");
+            return true;
 
             default:
                 return super.onOptionsItemSelected(item);

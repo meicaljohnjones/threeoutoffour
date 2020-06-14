@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bgapp"
-    tools:context=".activity.WinActivity">
+    tools:context=".activity.ComeBackLaterActivity">
 
     <TextView
         android:id="@+id/textScreen"
@@ -50,9 +50,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:background="@drawable/bgbtn"
-        android:onClick="continueWithGame"
+        android:onClick="restartGame"
         android:paddingBottom="10dp"
-        android:text="Refresh"
+        android:text="Reset Game...?"
         android:textAllCaps="false"
         android:textColor="@color/colorPurple"
         android:textSize="28sp" />
