@@ -110,4 +110,6 @@ public interface ThreeOutOfFourGame {
     void performRevealALetterHint() throws InsufficientCoinScoreException;
 
     void performSkipRoundHint() throws InsufficientCoinScoreException;
+
+    void clearChoices();
 }

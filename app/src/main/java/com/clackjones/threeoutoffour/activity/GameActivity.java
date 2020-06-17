@@ -40,6 +40,8 @@ import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class GameActivity extends AppCompatActivity implements PropertyChangeListener {
     private static final float OPAQUE = 1f;
@@ -80,6 +82,18 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         });
 
         rewardedAd = createAndLoadRewardedAd();
+
+        // setup clear button
+        TextInputLayout proposedAnswerTV = (TextInputLayout) findViewById(R.id.editText);
+        proposedAnswerTV.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                threeOutOfFourGame.clearChoices();
+            }
+        });
+
+        TextInputEditText answerText = (TextInputEditText) findViewById(R.id.answerText);
+        answerText.setKeyListener(null);
     }
 
     @Override
@@ -188,9 +202,9 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void updateProposedAnswer() {
         String proposedAnswer = this.threeOutOfFourGame.getProposedAnswer();
-        TextView proposedAnswerTV = (TextView) findViewById(R.id.editText);
+        TextInputLayout proposedAnswerTV = (TextInputLayout) findViewById(R.id.editText);
 
-        proposedAnswerTV.setText(proposedAnswer);
+        proposedAnswerTV.getEditText().setText(proposedAnswer);
     }
 
     @Override

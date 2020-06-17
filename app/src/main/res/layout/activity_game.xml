@@ -94,27 +94,32 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.06"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:fontFamily="@font/fredokaone"
+        android:padding="5dp"
+        android:textColor="#332FA2"
+        android:textSize="20sp"
+
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/imageSquare"
+        app:layout_constraintWidth_percent=".9">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/answerText"
             android:layout_width="match_parent"
-            android:background="@drawable/bgpurple"
-            android:clickable="false"
-            android:focusable="false"
-            android:fontFamily="@font/fredokaone"
-            android:textColor="#332FA2"
-            android:textSize="20sp"
-            android:padding="5dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageSquare"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-
-            />
+            android:layout_height="match_parent"
+            android:background="#fff" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textTitle"

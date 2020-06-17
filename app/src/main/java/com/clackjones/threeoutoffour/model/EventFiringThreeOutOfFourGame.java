@@ -281,6 +281,13 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
         }
     }
 
+    public void clearChoices() {
+        resetChoices();
+        resetProposedAnswer();
+        // TODO: maybe replace this with more appropriate event
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.INCORRECT_PROPOSED_ANSWER_EVENT, 1,0);
+    }
+
     @Override
     public void performSkipRoundHint() throws InsufficientCoinScoreException {
         throwExceptionIfInsufficientFunds(ThreeOutOfFourGame.HINT_SKIP_ROUND_COINS_REQUIRED);
