@@ -6,12 +6,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import android.util.Base64;
 import java.util.List;
 
 public class HttpSerializedRoundResourceGetter implements SerializedRoundResourceGetter {
-    static final String HTTP_ROUND_RESOURCE = "http://threeoutoffour.clackjones.com/";
+    static final String HTTP_ROUND_RESOURCE = "https://threeoutoffour.clackjones.com/";
     static final String ROUNDS_INDEX_FILENAME = "rounds_index.txt";
+    private static final String USERNAME = "threeoutoffour";
+    private static final String PASSWORD = "@Do68!c9RoUl";
 
     @Override
     public InputStream getResourceContainingRound(int roundNumber) throws IOException {
@@ -28,7 +32,7 @@ public class HttpSerializedRoundResourceGetter implements SerializedRoundResourc
         }
 
         String correctFileName = indexFilenames.get(indexOfCorrectFile);
-        return retrieveInputStreamForResource(correctFileName);
+        return createConnectionForResource(correctFileName).getInputStream();
     }
 
     private List<IntegerInterval> filenamesToIntervals(List<String> indexFilenames) {
@@ -46,18 +50,10 @@ public class HttpSerializedRoundResourceGetter implements SerializedRoundResourc
         return intervals;
     }
 
-    private InputStream retrieveInputStreamForResource(String filename) throws IOException {
-        URL url = new URL(HTTP_ROUND_RESOURCE + filename);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-        return conn.getInputStream();
-    }
-
     private List<String> retrieveIndexFileNames() throws IOException {
         List<String> filenames = new ArrayList<>();
 
-        URL url = new URL(HTTP_ROUND_RESOURCE + ROUNDS_INDEX_FILENAME);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        HttpURLConnection conn = createConnectionForResource(ROUNDS_INDEX_FILENAME);
         try {
             InputStream in = conn.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -73,6 +69,23 @@ public class HttpSerializedRoundResourceGetter implements SerializedRoundResourc
 
         return filenames;
     }
+
+    private HttpURLConnection createConnectionForResource(String resourceName) throws IOException {
+        URL url = new URL(HTTP_ROUND_RESOURCE + resourceName);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        String auth = HttpSerializedRoundResourceGetter.USERNAME +
+                ":" +
+                HttpSerializedRoundResourceGetter.PASSWORD;
+
+        byte[] encodedAuth = Base64.encode(auth.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
+        String authHeaderValue = "Basic " + new String(encodedAuth);
+
+        conn.setRequestProperty("Authorization", authHeaderValue);
+
+        return conn;
+    }
+
 
     class IntegerInterval {
         Integer lowerInclusive;
