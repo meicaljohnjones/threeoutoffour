@@ -9,6 +9,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.clackjones.threeoutoffour.R;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends Activity {
     ImageView bigboss;
@@ -23,6 +27,16 @@ public class MainActivity extends Activity {
 
         bigboss = (ImageView) findViewById(R.id.bigboss);
         bigboss.startAnimation(smalltobig);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        RequestConfiguration configuration =
+                new RequestConfiguration.Builder().build();
+        MobileAds.setRequestConfiguration(configuration);
+
     }
 
     //make it so that player is taken to where they left off in the game

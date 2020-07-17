@@ -26,16 +26,12 @@ import com.clackjones.threeoutoffour.model.ThreeOutOfFourGameLocator;
 import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
 import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeper;
 import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeperProvider;
-import com.google.android.flexbox.FlexboxLayout;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
@@ -75,11 +71,7 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         populateUI();
         setSupportActionBar(myToolbar);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
+
 
         rewardedAd = createAndLoadRewardedAd();
 
