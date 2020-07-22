@@ -17,7 +17,7 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:fontFamily="@font/fredokaone"
-        android:text="Three Out of Four"
+        android:text="Great job!"
         android:textColor="#FFF"
         android:textSize="30sp" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/bigboss"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
-        android:src="@drawable/icboss"
+        android:src="@drawable/coins"
         android:layout_width="180dp"
         android:layout_height="180dp" />
 
@@ -38,7 +38,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/fredokaone"
-        android:text="Great job!"
+        android:text="+10 coins"
         android:textAlignment="center"
         android:textColor="#FFF"
         android:textSize="28sp" />
