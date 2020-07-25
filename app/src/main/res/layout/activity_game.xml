@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgapp"
     android:orientation="vertical"
     tools:context=".activity.GameActivity">
 
@@ -29,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintWidth_percent="0.75"
         app:layout_constraintDimensionRatio="1:1"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -97,18 +96,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editText"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="12dp"
         android:clickable="false"
         android:focusable="false"
-        android:fontFamily="@font/fredokaone"
-        android:padding="5dp"
-        android:textColor="#332FA2"
-        android:textSize="20sp"
-
+        
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/imageSquare"
@@ -116,9 +110,13 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/answerText"
+            android:text="asd"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff" />
+            android:textSize="24sp"
+
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -126,49 +124,53 @@
         android:layout_width="0dp"
         app:layout_constraintWidth_percent=".3"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/fredokaone"
+        
         android:text=""
-        android:textColor="#FFF"
         android:textSize="20sp"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/WatchAd"
+        app:layout_constraintEnd_toStartOf="@+id/Hint"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:layout_constraintHorizontal_chainStyle="packed"
 
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
+
         />
 
-    <TextView
-        android:id="@+id/WatchAd"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent=".3"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/fredokaone"
-        android:onClick="showAd"
-        android:text="Watch Ad"
-        android:textColor="#FFF"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textTitle"
-        app:layout_constraintTop_toTopOf="@+id/textTitle"
-        android:layout_marginLeft="16dp"
-        />
-
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/Hint"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent=".20"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/fredokaone"
-        android:onClick="showHintsMenu"
+        android:layout_marginLeft="5dp"
         android:text="Hint"
-        android:textColor="#FFF"
-        android:textSize="20sp"
+        android:onClick="showHintsMenu"
 
-        app:layout_constraintStart_toEndOf="@+id/WatchAd"
+        app:icon="@drawable/star_border"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+
+        app:layout_constraintEnd_toEndOf="@+id/WatchAd"
+
+        app:layout_constraintStart_toEndOf="@+id/textTitle"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        />
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/WatchAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Ad"
+        android:onClick="showAd"
+
+        app:icon="@drawable/local_atm"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+
+        app:layout_constraintStart_toEndOf="@+id/Hint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/WatchAd"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        android:layout_marginLeft="5dp"
+
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -179,21 +181,19 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.90"
-        app:layout_constraintHeight_percent="0.20"
-        android:layout_marginTop="8dp" >
+        app:layout_constraintHeight_percent="0.24"
+        android:layout_marginTop="14dp" >
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice00"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
             android:textSize="32sp"
 
             app:layout_constraintHeight_percent="0.45"
@@ -203,18 +203,16 @@
             app:layout_constraintWidth_percent="0.17" />
 
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice01"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
             android:textSize="32sp"
 
             app:layout_constraintHeight_percent="0.45"
@@ -223,18 +221,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.17" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice02"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
             android:textSize="32sp"
 
             app:layout_constraintHeight_percent="0.45"
@@ -243,18 +239,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.17" />
 
-        <TextView
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice03"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
             android:textSize="32sp"
 
             app:layout_constraintHeight_percent="0.45"
@@ -263,18 +258,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.17" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice04"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
             android:textSize="32sp"
 
             app:layout_constraintHeight_percent="0.45"
@@ -284,19 +277,16 @@
             app:layout_constraintWidth_percent="0.17" />
 
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice05"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
 
             android:textSize="32sp"
             app:layout_constraintHeight_percent="0.45"
@@ -305,19 +295,16 @@
             app:layout_constraintTop_toBottomOf="@+id/choice00"
             app:layout_constraintWidth_percent="0.17" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice06"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
 
             android:textSize="32sp"
             app:layout_constraintHeight_percent="0.45"
@@ -326,19 +313,16 @@
             app:layout_constraintTop_toBottomOf="@+id/choice00"
             app:layout_constraintWidth_percent="0.17" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice07"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
 
             android:textSize="32sp"
             app:layout_constraintHeight_percent="0.45"
@@ -347,19 +331,16 @@
             app:layout_constraintTop_toBottomOf="@+id/choice00"
             app:layout_constraintWidth_percent="0.17" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice08"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
 
             android:textSize="32sp"
             app:layout_constraintHeight_percent="0.45"
@@ -368,19 +349,16 @@
             app:layout_constraintTop_toBottomOf="@+id/choice00"
             app:layout_constraintWidth_percent="0.17" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/choice09"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:background="@drawable/bgpink"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="\?"
-            android:textColor="@color/colorPurple"
 
             android:textSize="32sp"
             app:layout_constraintHeight_percent="0.45"
