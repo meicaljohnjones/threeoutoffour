@@ -89,7 +89,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:background="@drawable/bgbtn"
         android:onClick="startGame"
         android:text="PLAY"
         android:textAllCaps="false"

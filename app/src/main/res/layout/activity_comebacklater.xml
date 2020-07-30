@@ -1,76 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgapp"
     tools:context=".activity.ComeBackLaterActivity">
 
-    <TextView
-        android:id="@+id/textScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:fontFamily="@font/fredokaone"
-        android:text="Three Out of Four"
-        android:textColor="#FFF"
-        android:textSize="30sp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topPad"
 
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent=".1"
+        android:orientation="horizontal" />
+
+        <TextView
+            android:id="@+id/textScreen"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="Three Out of Four"
+            android:autoSizeTextType="uniform"
+
+            app:layout_constraintHeight_percent=".10"
+            app:layout_constraintWidth_percent=".80"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topPad"
+            />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/centerPad"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
 
     <ImageView
         android:id="@+id/bigboss"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/icboss"
-        android:layout_width="180dp"
-        android:layout_height="180dp" />
+        android:src="@drawable/toof_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/centerPad"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lowerPad"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63" />
 
 
     <TextView
         android:id="@+id/textQuestion"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/fredokaone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".12"
+        app:layout_constraintWidth_percent=".6"
+
         android:text="Come back later for more rounds!"
         android:textAlignment="center"
-        android:textColor="#FFF"
-        android:textSize="28sp" />
 
-    <Button
+        app:layout_constraintTop_toBottomOf="@+id/lowerPad"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:autoSizeTextType="uniform"
+
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lowestPad"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.78" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/textTitle"
-        android:layout_width="280dp"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/bgbtn"
         android:onClick="restartGame"
-        android:paddingBottom="10dp"
-        android:text="Reset Game...?"
+        android:text="Reset Game?"
         android:textAllCaps="false"
-        android:textColor="@color/colorPurple"
-        android:textSize="28sp" />
+        app:layout_constraintHeight_percent=".08"
+        app:layout_constraintWidth_percent=".8"
 
-    <!-- For Back to Home, make sure takes
-    player to main screen but saves their
-    progress so that when click play they
-    continue where they left off -->
-    <TextView
-        android:id="@+id/textBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintTop_toBottomOf="@+id/lowestPad"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lowestPad2"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/goHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/fredokaone"
         android:onClick="returnToHomeScreen"
         android:text="Back to Home"
-        android:textColor="#AD87FF"
-        android:textSize="22sp" />
+        android:textAllCaps="false"
+        app:layout_constraintHeight_percent=".07"
+        app:layout_constraintWidth_percent=".6"
 
-</LinearLayout>
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintTop_toBottomOf="@+id/lowestPad2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

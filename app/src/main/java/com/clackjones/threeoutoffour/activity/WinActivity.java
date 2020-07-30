@@ -46,7 +46,7 @@ public class WinActivity extends AppCompatActivity {
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
 
-        bigboss = (ImageView) findViewById(R.id.bigboss);
+        bigboss = (ImageView) findViewById(R.id.coins);
         bigboss.startAnimation(smalltobig);
     }
 
