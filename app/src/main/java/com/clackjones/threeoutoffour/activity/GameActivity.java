@@ -29,6 +29,7 @@ import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeperProvider;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.android.gms.ads.AdRequest;
@@ -36,6 +37,7 @@ import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -163,11 +165,23 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void updateGrid() {
         List<ThreeOutOfFourChoice> choices = this.threeOutOfFourGame.getChoices();
-        ConstraintLayout choicesGrid = findViewById(R.id.choiceGrid);
+        List<View> choicesGrid = Arrays.asList(new View[]{
+                findViewById(R.id.choice00),
+                findViewById(R.id.choice01),
+                findViewById(R.id.choice02),
+                findViewById(R.id.choice03),
+                findViewById(R.id.choice04),
+                findViewById(R.id.choice05),
+                findViewById(R.id.choice06),
+                findViewById(R.id.choice07),
+                findViewById(R.id.choice08),
+                findViewById(R.id.choice09)
+        });
+
 
         for (int choiceIdx = 0; choiceIdx < choices.size(); ++choiceIdx) {
             ThreeOutOfFourChoice choice = choices.get(choiceIdx);
-            TextView choiceNBtn = (TextView) choicesGrid.getChildAt(choiceIdx);
+            TextView choiceNBtn = (TextView) choicesGrid.get(choiceIdx);
 
             setUpChoiceButton(choiceNBtn, choice);
         }

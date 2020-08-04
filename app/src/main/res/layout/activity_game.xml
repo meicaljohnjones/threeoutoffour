@@ -23,17 +23,25 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topPad"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent=".10"
+        android:orientation="horizontal" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/imageSquare"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintWidth_percent="0.75"
         app:layout_constraintDimensionRatio="1:1"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/topPad"
+        app:layout_constraintBottom_toTopOf="@+id/imageSquareGuidline"
+        >
 
         <ImageView
             android:id="@+id/topLeftImage"
@@ -92,12 +100,26 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/imageSquareGuidline"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.53" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lowerPad"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editText"
         android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="0dp"
         android:clickable="false"
         android:focusable="false"
         
@@ -105,8 +127,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/imageSquare"
-        app:layout_constraintWidth_percent=".9">
+        app:layout_constraintTop_toTopOf="@+id/lowerPad"
+        app:layout_constraintBottom_toBottomOf="@+id/padButtons"
+        app:layout_constraintWidth_percent=".9"
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/answerText"
@@ -114,10 +139,18 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="24sp"
 
+            android:autoSizeTextType="uniform"
             />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/padButtons"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.64" />
 
     <TextView
         android:id="@+id/textTitle"
@@ -130,28 +163,21 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Hint"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintHorizontal_chainStyle="packed"
-
-        android:layout_marginTop="8dp"
-
+        app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
         />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
         android:text="Hint"
         android:onClick="showHintsMenu"
 
         app:icon="@drawable/star_border"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
 
-        app:layout_constraintEnd_toEndOf="@+id/WatchAd"
-
-        app:layout_constraintStart_toEndOf="@+id/textTitle"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/g3"
+        app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
         />
 
 
@@ -166,205 +192,230 @@
         app:icon="@drawable/local_atm"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
 
-        app:layout_constraintStart_toEndOf="@+id/Hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        android:layout_marginLeft="5dp"
+        app:layout_constraintEnd_toStartOf="@id/g5"
+        app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
 
         />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/choiceGrid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/upperGrid"
+
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintWidth_percent="0.90"
-        app:layout_constraintHeight_percent="0.24"
-        android:layout_marginTop="14dp" >
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.71" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice00"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
-            android:textSize="32sp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lowerGrid"
 
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.17" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.84" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g1"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice01"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
-            android:textSize="32sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.23" />
 
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice00"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.17" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g2"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice02"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
-            android:textSize="32sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.41" />
 
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice01"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.17" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g3"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g4"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.77" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g5"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice03"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
-            android:textSize="32sp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice00"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice02"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.17" />
+        app:layout_constraintEnd_toEndOf="@id/g1"
+        app:layout_constraintTop_toTopOf="@id/upperGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+         />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice04"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
-            android:textSize="32sp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice01"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice03"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.17" />
+        app:layout_constraintEnd_toEndOf="@id/g2"
+        app:layout_constraintTop_toTopOf="@id/upperGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice02"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice05"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
+        app:layout_constraintEnd_toEndOf="@id/g3"
+        app:layout_constraintTop_toTopOf="@id/upperGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
 
-            android:textSize="32sp"
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choice00"
-            app:layout_constraintWidth_percent="0.17" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice03"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice06"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
+        app:layout_constraintEnd_toEndOf="@id/g4"
+        app:layout_constraintTop_toTopOf="@id/upperGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
 
-            android:textSize="32sp"
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice05"
-            app:layout_constraintTop_toBottomOf="@+id/choice00"
-            app:layout_constraintWidth_percent="0.17" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice04"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice07"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
+        app:layout_constraintEnd_toEndOf="@id/g5"
+        app:layout_constraintTop_toTopOf="@id/upperGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
 
-            android:textSize="32sp"
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice06"
-            app:layout_constraintTop_toBottomOf="@+id/choice00"
-            app:layout_constraintWidth_percent="0.17" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice05"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice08"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
+        app:layout_constraintEnd_toEndOf="@id/g1"
+        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
 
-            android:textSize="32sp"
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice07"
-            app:layout_constraintTop_toBottomOf="@+id/choice00"
-            app:layout_constraintWidth_percent="0.17" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice06"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/choice09"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:alpha="0"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="\?"
+        app:layout_constraintEnd_toEndOf="@id/g2"
+        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
 
-            android:textSize="32sp"
-            app:layout_constraintHeight_percent="0.45"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/choice08"
-            app:layout_constraintTop_toBottomOf="@+id/choice00"
-            app:layout_constraintWidth_percent="0.17" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice07"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g3"
+        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice08"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g4"
+        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice09"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g5"
+        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintWidth_percent=".16"
+        app:layout_constraintHeight_percent=".11"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
