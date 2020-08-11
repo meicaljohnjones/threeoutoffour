@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.clackjones.threeoutoffour.R;
 import com.clackjones.threeoutoffour.dialog.HintDialogFragment;
@@ -37,7 +36,6 @@ import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -64,6 +62,7 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
             visitComeBackLaterScreen();
         }
 
+        threeOutOfFourGame.clearPropertyChangeListeners();
         threeOutOfFourGame.addPropertyChangeListener(this);
 
 
@@ -234,21 +233,25 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void visitHomeScreen() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 
     private void visitWinScreen() {
+        System.out.println("GameActivity::visitWinScreen()");
+        this.threeOutOfFourGame.addPropertyChangeListener(this);
         Intent intent = new Intent(this, WinActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 
     private void visitComeBackLaterScreen() {
         Intent intent = new Intent(this, ComeBackLaterActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 
     public void showHintsMenu(View view) {
-        System.out.println("Hello, world");
         HintDialogFragment hintDialogFragment = new HintDialogFragment();
         hintDialogFragment.setGame(this.threeOutOfFourGame);
         hintDialogFragment.show(getSupportFragmentManager(), "HintDialogFragment");

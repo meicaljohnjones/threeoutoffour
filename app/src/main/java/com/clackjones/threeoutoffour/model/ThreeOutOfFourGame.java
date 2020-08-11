@@ -92,6 +92,7 @@ public interface ThreeOutOfFourGame {
      * @param propertyChangeListener
      */
     void addPropertyChangeListener(PropertyChangeListener propertyChangeListener);
+    void removePropertyChangeListener(PropertyChangeListener propertyChangeListener);
 
     /**
      * Fire specific events to  PropertyChangeListeners when choice made,
@@ -112,4 +113,6 @@ public interface ThreeOutOfFourGame {
     void performSkipRoundHint() throws InsufficientCoinScoreException;
 
     void clearChoices();
+
+    void clearPropertyChangeListeners();
 }

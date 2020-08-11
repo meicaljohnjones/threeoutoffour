@@ -189,6 +189,18 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
     }
 
     @Override
+    public void clearPropertyChangeListeners() {
+        Arrays.stream(this.propertyChangeSupport.getPropertyChangeListeners()).
+                forEach(this.propertyChangeSupport::removePropertyChangeListener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(PropertyChangeListener propertyChangeListener) {
+        this.propertyChangeSupport.removePropertyChangeListener(propertyChangeListener);
+    }
+
+
+    @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener propertyChangeListener) {
         boolean isListenerAlreadyRegistered = Arrays.asList(this.propertyChangeSupport.getPropertyChangeListeners(propertyName)).contains(propertyChangeListener);
         if (!isListenerAlreadyRegistered) {

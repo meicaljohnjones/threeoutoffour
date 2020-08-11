@@ -62,6 +62,7 @@ public class WinActivity extends AppCompatActivity {
     private void performIntentWithOrWithoutAd(Class destinationActivity) {
         Runnable r = () -> {
             Intent intent = new Intent(WinActivity.this, destinationActivity);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         };
 
