@@ -1,5 +1,7 @@
 package com.clackjones.threeoutoffour.score;
 
+import android.content.Context;
+
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 
 import java.beans.PropertyChangeEvent;
@@ -8,12 +10,19 @@ import java.beans.PropertyChangeSupport;
 import java.util.Arrays;
 
 public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
+    private static final long serialVersionUID = 6529685098267757690L;
+
     private int coinScore;
     private PropertyChangeSupport propertyChangeSupport;
+    private transient Context applicationContext;
 
     public OfflineCoinScoreKeeper() {
         this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.coinScore = 0;
+    }
+
+    public void setApplicationContext(Context applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     @Override
@@ -45,6 +54,9 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
         } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.HINT_SKIP_ROUND_EVENT)) {
             this.removeCoins(ThreeOutOfFourGame.HINT_SKIP_ROUND_COINS_REQUIRED);
         }
+
+        OfflineCoinScoreKeeperProvider.getInstance().saveCoinScoreKeeper(this.applicationContext,
+                this);
     }
 
     private void addCoinsSilently(Integer numCoins) {

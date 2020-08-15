@@ -22,7 +22,6 @@ import com.clackjones.threeoutoffour.model.ThreeOutOfFourChoice;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGameLocator;
 
-import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
 import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeper;
 import com.clackjones.threeoutoffour.score.OfflineCoinScoreKeeperProvider;
 
@@ -71,7 +70,6 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
         populateUI();
         setSupportActionBar(myToolbar);
-
 
 
         rewardedAd = createAndLoadRewardedAd();
@@ -215,18 +213,9 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String evtName = evt.getPropertyName();
-
-        if (evtName.equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
+        if (evtName.equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT) || evtName.equals(ThreeOutOfFourGame.RESET_GAME_EVENT)) {
             this.visitWinScreen();
-
-        } else if (evtName.equals(ThreeOutOfFourGame.RESET_GAME_EVENT)) {
-            this.visitHomeScreen();
-        }  else if (evtName.equals(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT)) {
-            OfflineCoinScoreKeeperProvider.getInstance().saveCoinScoreKeeper(this.getApplicationContext(),
-                    this.offlineCoinScoreKeeper);
-            populateUI();
-        }
-        else {
+        }  else {
             populateUI();
         }
     }

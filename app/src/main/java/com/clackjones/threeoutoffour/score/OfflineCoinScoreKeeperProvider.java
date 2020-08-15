@@ -32,11 +32,12 @@ public class OfflineCoinScoreKeeperProvider {
         File saveStateFile = new File(context.getFilesDir(), FILE_NAME);
         boolean isGameStatePersisted = saveStateFile.exists();
 
+        OfflineCoinScoreKeeper offlineCoinScoreKeeper =  null;
         if (isGameStatePersisted) {
             try {
                 FileInputStream fis = new FileInputStream(saveStateFile);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                return (OfflineCoinScoreKeeper) ois.readObject();
+                offlineCoinScoreKeeper = (OfflineCoinScoreKeeper) ois.readObject();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -44,9 +45,12 @@ public class OfflineCoinScoreKeeperProvider {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        } else {
+            offlineCoinScoreKeeper = new OfflineCoinScoreKeeper();
         }
 
-        return new OfflineCoinScoreKeeper();
+        offlineCoinScoreKeeper.setApplicationContext(context);
+        return offlineCoinScoreKeeper;
     }
 
     public void saveCoinScoreKeeper(Context context, OfflineCoinScoreKeeper offlineCoinScoreKeeper) {
