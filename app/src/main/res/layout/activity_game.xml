@@ -130,17 +130,18 @@
         app:layout_constraintTop_toTopOf="@+id/lowerPad"
         app:layout_constraintBottom_toBottomOf="@+id/padButtons"
         app:layout_constraintWidth_percent=".9"
+        android:hint="Answer"
 
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/answerText"
-            android:text="asd"
+            android:text=""
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
 
-            android:autoSizeTextType="uniform"
+            android:textSize="18dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
