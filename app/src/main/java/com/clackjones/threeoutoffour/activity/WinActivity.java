@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.clackjones.threeoutoffour.R;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
@@ -31,6 +32,11 @@ public class WinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
         this.intentAdListener = new IntentAdListener();
+
+        TextView coinText = findViewById(R.id.coinText);
+        Integer newRoundScore = getResources().getInteger(R.integer.increment_score_new_round);
+        String coinsIncreaseMessage = getResources().getString(R.string.coin_increase_message, newRoundScore);
+        coinText.setText(coinsIncreaseMessage);
 
         OfflineCoinScoreKeeper offlineCoinScoreKeeper = OfflineCoinScoreKeeperProvider.getInstance().loadOrCreate(this.getApplicationContext());
         this.threeOutOfFourGame = ThreeOutOfFourGameLocator.getInstance(offlineCoinScoreKeeper, this.getApplicationContext()).threeOutOfFourGame();

@@ -58,7 +58,6 @@
         app:layout_constraintHeight_percent=".07"
         app:layout_constraintWidth_percent=".6"
 
-        android:text="+10 Coins"
         android:textAlignment="center"
 
         app:layout_constraintBottom_toTopOf="@+id/lowerPad"

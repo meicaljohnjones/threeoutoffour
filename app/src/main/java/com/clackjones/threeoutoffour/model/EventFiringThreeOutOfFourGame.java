@@ -1,7 +1,9 @@
 package com.clackjones.threeoutoffour.model;
 
 import android.content.Context;
+import android.content.res.Resources;
 
+import com.clackjones.threeoutoffour.R;
 import com.clackjones.threeoutoffour.score.CoinScoreKeeper;
 import com.clackjones.threeoutoffour.state.GameStateProvider;
 
@@ -223,7 +225,8 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void performRemoveALetterHint() throws InsufficientCoinScoreException {
-        throwExceptionIfInsufficientFunds(ThreeOutOfFourGame.HINT_LETTER_REMOVED_COINS_REQUIRED);
+        Resources r = context.getResources();
+        throwExceptionIfInsufficientFunds(r.getInteger(R.integer.coins_required_remove_letter));
 
         for (ThreeOutOfFourChoice choice : getChoices()) {
             boolean isLetterInAnswer = this.gameState.getCurrentAnswer().contains(choice.getValue());
@@ -239,7 +242,8 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void performRevealALetterHint() throws InsufficientCoinScoreException {
-        throwExceptionIfInsufficientFunds(ThreeOutOfFourGame.HINT_LETTER_REVEALED_COINS_REQUIRED);
+        Resources r = context.getResources();
+        throwExceptionIfInsufficientFunds(r.getInteger(R.integer.coins_required_reveal_letter));
 
         clearIncorrectLetters();
 
@@ -302,7 +306,8 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
 
     @Override
     public void performSkipRoundHint() throws InsufficientCoinScoreException {
-        throwExceptionIfInsufficientFunds(ThreeOutOfFourGame.HINT_SKIP_ROUND_COINS_REQUIRED);
+        Resources r = context.getResources();
+        throwExceptionIfInsufficientFunds(r.getInteger(R.integer.coins_required_skip_round));
 
         incrementRound();
         this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, 0, 1);

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="increment_score_new_round">25</integer>
+    <integer name="increment_score_watch_ad">10</integer>
+    <integer name="coins_required_remove_letter">10</integer>
+    <integer name="coins_required_reveal_letter">25</integer>
+    <integer name="coins_required_skip_round">100</integer>
+</resources>

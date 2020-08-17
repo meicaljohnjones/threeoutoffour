@@ -2,7 +2,7 @@
 <resources>
     <string-array name="hint_types">
         <item>Remove Letter (10 coins)</item>
-        <item>Reveal a Letter (35 coins)</item>
-        <item>Skip Round (150 coins)</item>
+        <item>Reveal a Letter (25 coins)</item>
+        <item>Skip Round (100 coins)</item>
     </string-array>
 </resources>

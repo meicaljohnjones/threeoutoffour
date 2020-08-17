@@ -1,5 +1,7 @@
 package com.clackjones.threeoutoffour.model;
 
+import com.clackjones.threeoutoffour.R;
+
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
@@ -12,11 +14,6 @@ public interface ThreeOutOfFourGame {
     final String LETTERS_REMAINING_DECREMENTED_EVENT = "LETTERS_REMAINING_DECREMENTED_EVENT";
     final String HINT_LETTER_REMOVED_EVENT = "HINT_LETTER_REMOVED_EVENT";
     final String HINT_LETTER_REVEALED_EVENT = "HINT_LETTER_REVEALED_EVENT";
-
-    final int HINT_LETTER_REMOVED_COINS_REQUIRED = 10;
-    final int HINT_LETTER_REVEALED_COINS_REQUIRED = 35;
-    final int ROUND_SCORE_INCREMENT = 5;
-    final int HINT_SKIP_ROUND_COINS_REQUIRED = 150;
     final String HINT_SKIP_ROUND_EVENT = "HINT_SKIP_ROUND_EVENT";
     final Integer WATCHED_AD_COINS = 10;
 

@@ -1,7 +1,9 @@
 package com.clackjones.threeoutoffour.score;
 
 import android.content.Context;
+import android.content.res.Resources;
 
+import com.clackjones.threeoutoffour.R;
 import com.clackjones.threeoutoffour.model.ThreeOutOfFourGame;
 
 import java.beans.PropertyChangeEvent;
@@ -45,14 +47,16 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        Resources r = applicationContext.getResources();
+
         if (evt.getPropertyName().equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
-            this.addCoinsSilently(ThreeOutOfFourGame.ROUND_SCORE_INCREMENT);
+            this.addCoinsSilently(r.getInteger(R.integer.increment_score_new_round));
         } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT)) {
-            this.removeCoins(ThreeOutOfFourGame.HINT_LETTER_REMOVED_COINS_REQUIRED);
+            this.removeCoins(r.getInteger(R.integer.coins_required_remove_letter));
         } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.HINT_LETTER_REVEALED_EVENT)) {
-            this.removeCoins(ThreeOutOfFourGame.HINT_LETTER_REVEALED_COINS_REQUIRED);
+            this.removeCoins(r.getInteger(R.integer.coins_required_reveal_letter));
         } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.HINT_SKIP_ROUND_EVENT)) {
-            this.removeCoins(ThreeOutOfFourGame.HINT_SKIP_ROUND_COINS_REQUIRED);
+            this.removeCoins(r.getInteger(R.integer.coins_required_skip_round));
         }
 
         OfflineCoinScoreKeeperProvider.getInstance().saveCoinScoreKeeper(this.applicationContext,
