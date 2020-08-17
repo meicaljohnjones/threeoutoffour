@@ -155,7 +155,7 @@
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintWidth_percent=".25"
         android:layout_height="wrap_content"
         
         android:text=""
@@ -163,6 +163,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Hint"
+        app:layout_constraintTop_toTopOf="@+id/padButtons"
         app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
         />
 
