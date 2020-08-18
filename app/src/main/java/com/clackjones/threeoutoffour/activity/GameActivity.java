@@ -213,8 +213,10 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String evtName = evt.getPropertyName();
-        if (evtName.equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT) || evtName.equals(ThreeOutOfFourGame.RESET_GAME_EVENT)) {
+        if (evtName.equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
             this.visitWinScreen();
+        } else if (evtName.equals(ThreeOutOfFourGame.RESET_GAME_EVENT)) {
+            this.visitHomeScreen();
         }  else {
             populateUI();
         }
