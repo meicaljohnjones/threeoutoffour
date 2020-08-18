@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -35,8 +36,14 @@ import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.CHOICE_MADE_EVENT;
+import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.INCORRECT_PROPOSED_ANSWER_EVENT;
+import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.RESET_GAME_EVENT;
+import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT;
 
 public class GameActivity extends AppCompatActivity implements PropertyChangeListener {
     private static final float OPAQUE = 1f;
@@ -213,12 +220,17 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String evtName = evt.getPropertyName();
-        if (evtName.equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
+        if (evtName.equals(ROUND_NUMBER_INCREMENTED_EVENT)) {
             this.visitWinScreen();
-        } else if (evtName.equals(ThreeOutOfFourGame.RESET_GAME_EVENT)) {
+        } else if (evtName.equals(RESET_GAME_EVENT)) {
             this.visitHomeScreen();
-        }  else {
+        }  else if (evtName.equals(CHOICE_MADE_EVENT)) {
             populateUI();
+        } else if (evtName.equals(INCORRECT_PROPOSED_ANSWER_EVENT)) {
+            populateUI();
+            Snackbar.make(findViewById(R.id.gameActivity), R.string.try_again, Snackbar.LENGTH_SHORT)
+                    .setAnchorView(findViewById(R.id.choice00))
+                    .show();
         }
     }
 

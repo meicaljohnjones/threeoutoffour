@@ -6,4 +6,5 @@
     <string name="hints">Hints</string>
     <string name="insufficient_credit">Insufficient coins. Watch an ad to get more coins!</string>
     <string name="coin_increase_message">+%d coins!</string>
+    <string name="try_again">\"Try again!\"</string>
 </resources>
