@@ -57,6 +57,8 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
             this.removeCoins(r.getInteger(R.integer.coins_required_reveal_letter));
         } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.HINT_SKIP_ROUND_EVENT)) {
             this.removeCoins(r.getInteger(R.integer.coins_required_skip_round));
+        } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.RESET_GAME_EVENT)) {
+            this.coinScore = 0;
         }
 
         OfflineCoinScoreKeeperProvider.getInstance().saveCoinScoreKeeper(this.applicationContext,
