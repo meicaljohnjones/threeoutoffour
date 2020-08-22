@@ -40,6 +40,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.CHOICE_MADE_EVENT;
+import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.HINT_LETTER_REVEALED_EVENT;
 import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.INCORRECT_PROPOSED_ANSWER_EVENT;
 import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.RESET_GAME_EVENT;
 import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.WON_ROUND_EVENT;
@@ -228,6 +229,10 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
             this.visitWinScreen();
         } else if (evtName.equals(RESET_GAME_EVENT)) {
             this.visitHomeScreen();
+        }  else if (evtName.equals(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT)) {
+            populateUI();
+        }  else if (evtName.equals(HINT_LETTER_REVEALED_EVENT)) {
+            populateUI();
         }  else if (evtName.equals(CHOICE_MADE_EVENT)) {
             populateUI();
         } else if (evtName.equals(INCORRECT_PROPOSED_ANSWER_EVENT)) {
