@@ -222,11 +222,18 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         String evtName = evt.getPropertyName();
         if (evtName.equals(WON_ROUND_EVENT)) {
             this.populateUI();
-            Snackbar.make(findViewById(R.id.gameActivity), "Correct!", Snackbar.LENGTH_SHORT)
+            Snackbar.make(findViewById(R.id.gameActivity), R.string.correct, Snackbar.LENGTH_LONG)
                     .setAnchorView(findViewById(R.id.choice00))
+                    .setDuration(2000)
+                    .addCallback(new Snackbar.Callback() {
+                        @Override
+                        public void onShown(Snackbar sb) {
+                            super.onShown(sb);
+                            threeOutOfFourGame.incrementRound();
+                            GameActivity.this.visitWinScreen();
+                        }
+                    })
                     .show();
-            threeOutOfFourGame.incrementRound();
-            this.visitWinScreen();
         } else if (evtName.equals(RESET_GAME_EVENT)) {
             this.visitHomeScreen();
         }  else if (evtName.equals(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT)) {
