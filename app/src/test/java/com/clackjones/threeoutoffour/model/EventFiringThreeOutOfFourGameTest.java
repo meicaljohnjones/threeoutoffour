@@ -58,7 +58,7 @@ public class EventFiringThreeOutOfFourGameTest {
         given(roundProvider.getNextRound(0)).willReturn(testRound);
         given(gameStateProvider.loadGameStateOrCreateNew(context)).willReturn(new GameState());
 
-        game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
+        game.addPropertyChangeListener(ThreeOutOfFourGame.WON_ROUND_EVENT, propertyChangeListener);
 
         // when
         game.initialize();
@@ -297,7 +297,7 @@ public class EventFiringThreeOutOfFourGameTest {
         };
 
         // when
-        game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
+        game.addPropertyChangeListener(ThreeOutOfFourGame.WON_ROUND_EVENT, propertyChangeListener);
         game.initialize();
         ThreeOutOfFourChoice correctChoice = game.getChoices().get(0);
         game.makeChoice(correctChoice);

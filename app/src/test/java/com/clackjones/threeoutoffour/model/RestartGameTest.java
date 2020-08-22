@@ -86,7 +86,7 @@ public class RestartGameTest {
 
         // when
 
-        game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, propertyChangeListener);
+        game.addPropertyChangeListener(ThreeOutOfFourGame.WON_ROUND_EVENT, propertyChangeListener);
         game.addPropertyChangeListener(ThreeOutOfFourGame.RESET_GAME_EVENT, resetGameEventListener);
         game.restartGame();
 

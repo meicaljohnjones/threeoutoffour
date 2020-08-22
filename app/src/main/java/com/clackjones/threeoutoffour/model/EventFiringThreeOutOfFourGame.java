@@ -116,8 +116,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
                 resetProposedAnswer();
                 this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.INCORRECT_PROPOSED_ANSWER_EVENT, 1,0);
             } else {
-                incrementRound();
-                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, this.gameState.getCurrentRoundNumber() - 1, this.gameState.getCurrentRoundNumber());
+                this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.WON_ROUND_EVENT, this.gameState.getCurrentRoundNumber() - 1, this.gameState.getCurrentRoundNumber());
             }
         } else {
             // fire normal events
@@ -150,7 +149,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
         this.gameState.setCurrentProposedAnswer("");
     }
 
-    private void incrementRound() {
+    public void incrementRound() {
         Optional<Round> nextRoundOpt = roundProvider.getNextRound(this.getCurrentRoundNumber());
         this.gameState = nextRoundOpt
                 .map(EventFiringThreeOutOfFourGame::roundToGameState)
@@ -310,7 +309,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
         throwExceptionIfInsufficientFunds(r.getInteger(R.integer.coins_required_skip_round));
 
         incrementRound();
-        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, 0, 1);
+        this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.WON_ROUND_EVENT, 0, 1);
         this.propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.HINT_SKIP_ROUND_EVENT, 0, 1);
     }
 

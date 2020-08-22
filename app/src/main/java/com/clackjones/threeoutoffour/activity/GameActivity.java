@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -43,7 +42,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.CHOICE_MADE_EVENT;
 import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.INCORRECT_PROPOSED_ANSWER_EVENT;
 import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.RESET_GAME_EVENT;
-import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT;
+import static com.clackjones.threeoutoffour.model.ThreeOutOfFourGame.WON_ROUND_EVENT;
 
 public class GameActivity extends AppCompatActivity implements PropertyChangeListener {
     private static final float OPAQUE = 1f;
@@ -220,7 +219,12 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String evtName = evt.getPropertyName();
-        if (evtName.equals(ROUND_NUMBER_INCREMENTED_EVENT)) {
+        if (evtName.equals(WON_ROUND_EVENT)) {
+            this.populateUI();
+            Snackbar.make(findViewById(R.id.gameActivity), "Correct!", Snackbar.LENGTH_SHORT)
+                    .setAnchorView(findViewById(R.id.choice00))
+                    .show();
+            threeOutOfFourGame.incrementRound();
             this.visitWinScreen();
         } else if (evtName.equals(RESET_GAME_EVENT)) {
             this.visitHomeScreen();

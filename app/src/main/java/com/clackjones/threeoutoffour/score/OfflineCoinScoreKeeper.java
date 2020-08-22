@@ -49,7 +49,7 @@ public class OfflineCoinScoreKeeper implements CoinScoreKeeper {
     public void propertyChange(PropertyChangeEvent evt) {
         Resources r = applicationContext.getResources();
 
-        if (evt.getPropertyName().equals(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT)) {
+        if (evt.getPropertyName().equals(ThreeOutOfFourGame.WON_ROUND_EVENT)) {
             this.addCoinsSilently(r.getInteger(R.integer.increment_score_new_round));
         } else if (evt.getPropertyName().equals(ThreeOutOfFourGame.HINT_LETTER_REMOVED_EVENT)) {
             this.removeCoins(r.getInteger(R.integer.coins_required_remove_letter));

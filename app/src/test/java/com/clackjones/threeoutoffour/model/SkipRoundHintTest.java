@@ -88,7 +88,7 @@ public class SkipRoundHintTest {
                 isRoundIncrementFired[0] = true;
             }
         };
-        game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT,
+        game.addPropertyChangeListener(ThreeOutOfFourGame.WON_ROUND_EVENT,
                 roundIncrementedPropertyChangeListener);
 
         // when
@@ -143,7 +143,7 @@ public class SkipRoundHintTest {
                 isRoundIncrementFired[0] = true;
             }
         };
-        game.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT,
+        game.addPropertyChangeListener(ThreeOutOfFourGame.WON_ROUND_EVENT,
                 roundIncrementedPropertyChangeListener);
 
         // when

@@ -9,7 +9,7 @@ public interface ThreeOutOfFourGame {
     final String INCORRECT_PROPOSED_ANSWER_EVENT = "INCORRECT_PROPOSED_ANSWER_EVENT";
     final String CHOICE_MADE_EVENT = "CHOICE_MADE_EVENT";
     final String PROPOSED_ANSWER_CHANGED_EVENT = "PROPOSED_ANSWER_MADE_EVENT";
-    final String ROUND_NUMBER_INCREMENTED_EVENT = "ROUND_NUMBER_INCREMENTED_EVENT";
+    final String WON_ROUND_EVENT = "ROUND_NUMBER_INCREMENTED_EVENT";
     final String RESET_GAME_EVENT = "RESET_GAME_EVENT";
     final String LETTERS_REMAINING_DECREMENTED_EVENT = "LETTERS_REMAINING_DECREMENTED_EVENT";
     final String HINT_LETTER_REMOVED_EVENT = "HINT_LETTER_REMOVED_EVENT";
@@ -102,6 +102,8 @@ public interface ThreeOutOfFourGame {
     void saveGame();
 
     void restartGame();
+
+    void incrementRound();
 
     void performRemoveALetterHint() throws InsufficientCoinScoreException;
 

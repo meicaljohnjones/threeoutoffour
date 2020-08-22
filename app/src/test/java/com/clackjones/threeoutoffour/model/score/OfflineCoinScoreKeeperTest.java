@@ -33,7 +33,7 @@ public class OfflineCoinScoreKeeperTest {
         Integer initialScore = offlineCoinScoreKeeper.getCoinScore();
 
         PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
-        propertyChangeSupport.addPropertyChangeListener(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, offlineCoinScoreKeeper);
+        propertyChangeSupport.addPropertyChangeListener(ThreeOutOfFourGame.WON_ROUND_EVENT, offlineCoinScoreKeeper);
 
         final Boolean[] isCoinScoreChangedEvtCalled = {false};
         offlineCoinScoreKeeper.addPropertyChangeListener(CoinScoreKeeper.COIN_SCORE_CHANGED_EVENT, new PropertyChangeListener() {
@@ -44,7 +44,7 @@ public class OfflineCoinScoreKeeperTest {
         });
 
         // when
-        propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.ROUND_NUMBER_INCREMENTED_EVENT, 1, 2);
+        propertyChangeSupport.firePropertyChange(ThreeOutOfFourGame.WON_ROUND_EVENT, 1, 2);
 
         // then
         Integer scoreIncrement = offlineCoinScoreKeeper.getCoinScore() - initialScore;
