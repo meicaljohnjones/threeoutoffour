@@ -213,7 +213,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.84" />
+        app:layout_constraintGuide_percent="0.83" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/g1"
@@ -269,8 +269,9 @@
         app:layout_constraintEnd_toEndOf="@id/g1"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
          />
 
     <com.google.android.material.button.MaterialButton
@@ -286,8 +287,9 @@
         app:layout_constraintEnd_toEndOf="@id/g2"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -303,8 +305,9 @@
         app:layout_constraintEnd_toEndOf="@id/g3"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -320,8 +323,9 @@
         app:layout_constraintEnd_toEndOf="@id/g4"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -337,8 +341,9 @@
         app:layout_constraintEnd_toEndOf="@id/g5"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -353,8 +358,9 @@
 
         app:layout_constraintEnd_toEndOf="@id/g1"
         app:layout_constraintTop_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -369,8 +375,9 @@
 
         app:layout_constraintEnd_toEndOf="@id/g2"
         app:layout_constraintTop_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -385,8 +392,9 @@
 
         app:layout_constraintEnd_toEndOf="@id/g3"
         app:layout_constraintTop_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -401,8 +409,9 @@
 
         app:layout_constraintEnd_toEndOf="@id/g4"
         app:layout_constraintTop_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -417,7 +426,8 @@
 
         app:layout_constraintEnd_toEndOf="@id/g5"
         app:layout_constraintTop_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".16"
-        app:layout_constraintHeight_percent=".11"
+        app:layout_constraintWidth_percent=".17"
+        app:layout_constraintDimensionRatio="1:1.2"
+        android:padding="1dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
