@@ -155,6 +155,7 @@ public class EventFiringThreeOutOfFourGame implements ThreeOutOfFourGame {
                 .map(EventFiringThreeOutOfFourGame::roundToGameState)
                 .orElse(GameState.awaitingNewRounds(this.getCurrentRoundNumber()));
 
+        saveGame();
         // TODO: in GameActivity, check for isAwaitingNewRounds - redirect to 'Wait for New Round' Activity
     }
 
