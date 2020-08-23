@@ -131,7 +131,7 @@
         app:layout_constraintTop_toTopOf="@+id/lowerPad"
         app:layout_constraintBottom_toBottomOf="@+id/padButtons"
         app:layout_constraintWidth_percent=".9"
-
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -139,9 +139,9 @@
             android:text=""
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
 
-            android:textSize="18dp"
+            android:textSize="28dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
