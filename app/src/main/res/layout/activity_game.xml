@@ -138,7 +138,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/answerText"
             android:text=""
-            android:autoSizeTextType="uniform"
+            android:textAppearance="?android:attr/textAppearanceLarge"
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"     />
@@ -222,6 +222,22 @@
         app:layout_constraintGuide_percent="0.83" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lowerLowerGrid"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.84" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lowerLowerLowerGrid"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/g1"
 
         android:layout_width="0dp"
@@ -276,7 +292,6 @@
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
          />
 
@@ -294,7 +309,6 @@
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 
@@ -312,7 +326,6 @@
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 
@@ -330,7 +343,6 @@
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 
@@ -348,7 +360,6 @@
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 
@@ -363,9 +374,9 @@
         android:autoSizeTextType="uniform"
 
         app:layout_constraintEnd_toEndOf="@id/g1"
-        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 
@@ -380,9 +391,8 @@
         android:autoSizeTextType="uniform"
 
         app:layout_constraintEnd_toEndOf="@id/g2"
-        app:layout_constraintTop_toTopOf="@id/lowerGrid"
-        app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
+        app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"        app:layout_constraintWidth_percent=".17"
         android:padding="1dp"
         />
 
@@ -397,9 +407,9 @@
         android:autoSizeTextType="uniform"
 
         app:layout_constraintEnd_toEndOf="@id/g3"
-        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 
@@ -414,9 +424,9 @@
         android:autoSizeTextType="uniform"
 
         app:layout_constraintEnd_toEndOf="@id/g4"
-        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 
@@ -431,9 +441,9 @@
         android:autoSizeTextType="uniform"
 
         app:layout_constraintEnd_toEndOf="@id/g5"
-        app:layout_constraintTop_toTopOf="@id/lowerGrid"
+        app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
+        app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
-        app:layout_constraintDimensionRatio="1:1.2"
         android:padding="1dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
