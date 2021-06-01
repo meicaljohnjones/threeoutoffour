@@ -78,6 +78,7 @@
             android:layout_height="0dp"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintDimensionRatio="1:1"
+            android:autoSizeTextType="uniform"
 
             android:cropToPadding="false"
             android:scaleType="fitStart"
@@ -137,12 +138,11 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/answerText"
             android:text=""
+            android:autoSizeTextType="uniform"
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent"     />
 
-            android:textSize="28dp"
-            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -156,11 +156,12 @@
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintWidth_percent=".25"
-        android:layout_height="wrap_content"
-        
+
+        android:gravity="center"
         android:text=""
-        android:textSize="20sp"
+        android:autoSizeTextType="uniform"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Hint"
@@ -170,38 +171,43 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="Hint"
-        android:onClick="showHintsMenu"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintWidth_percent=".25"
+
+    android:onClick="showHintsMenu"
 
         app:icon="@drawable/star_border"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@+id/g3"
-        app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
-        />
+        app:layout_constraintTop_toTopOf="@+id/padButtons"
+        app:layout_constraintBottom_toBottomOf="@+id/upperGrid"        />
 
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/WatchAd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintWidth_percent=".33"
         android:text="Show Ad"
         android:onClick="showAd"
 
         app:icon="@drawable/local_atm"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/g5"
+        app:layout_constraintTop_toTopOf="@+id/padButtons"
         app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
-
         />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/upperGrid"
-
+        android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
