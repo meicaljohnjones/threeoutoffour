@@ -82,16 +82,14 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
         rewardedAd = createAndLoadRewardedAd();
 
         // setup clear button
-        TextInputLayout proposedAnswerTV = (TextInputLayout) findViewById(R.id.editText);
-        proposedAnswerTV.setEndIconOnClickListener(new View.OnClickListener() {
+        TextView proposedAnswerTV = (TextView) findViewById(R.id.clearText);
+        proposedAnswerTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 threeOutOfFourGame.clearChoices();
             }
         });
 
-        TextInputEditText answerText = (TextInputEditText) findViewById(R.id.answerText);
-        answerText.setKeyListener(null);
     }
 
     @Override
@@ -212,9 +210,40 @@ public class GameActivity extends AppCompatActivity implements PropertyChangeLis
 
     private void updateProposedAnswer() {
         String proposedAnswer = this.threeOutOfFourGame.getProposedAnswer();
-        TextInputLayout proposedAnswerTV = (TextInputLayout) findViewById(R.id.editText);
 
-        proposedAnswerTV.getEditText().setText(proposedAnswer);
+        setAnswer(proposedAnswer);
+        // TODO also need to replace clear button
+    }
+
+
+    private void setAnswer(String proposedAnswer) {
+        List<TextView> ansGrid = Arrays.asList(new TextView[]{
+                findViewById(R.id.ans00),
+                findViewById(R.id.ans01),
+                findViewById(R.id.ans02),
+                findViewById(R.id.ans03),
+                findViewById(R.id.ans04),
+                findViewById(R.id.ans05),
+                findViewById(R.id.ans06),
+                findViewById(R.id.ans07),
+                findViewById(R.id.ans08),
+                findViewById(R.id.ans09)
+        });
+
+
+        char[] chars = proposedAnswer.toCharArray();
+        for (int i = 0; i < chars.length; ++i) {
+            String currChar = String.valueOf(chars[i]);
+            ansGrid.get(i).setText(currChar);
+            ansGrid.get(i).animate().alpha(OPAQUE).setDuration(300);
+        }
+
+        // clear out all other letters
+        for (int i = chars.length; i < 10; ++i) {
+            ansGrid.get(i).setText("");
+            ansGrid.get(i).animate().alpha(TRANSPARENT).setDuration(300);
+
+        }
     }
 
     @Override

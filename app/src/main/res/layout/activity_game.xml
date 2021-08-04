@@ -118,32 +118,176 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.55" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editText"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans00"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clickable="false"
-        android:focusable="false"
-        
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-        app:layout_constraintTop_toTopOf="@+id/lowerPad"
-        app:layout_constraintBottom_toBottomOf="@+id/padButtons"
-        app:layout_constraintWidth_percent=".9"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
+        app:layout_constraintEnd_toEndOf="@id/g1"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/answerText"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceLarge"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans01"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"     />
+        app:layout_constraintEnd_toEndOf="@id/g2"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans02"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g3"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans03"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g4"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans04"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g5"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans05"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g6"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans06"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g7"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans07"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g8"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans08"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g9"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ans09"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="\?"
+        android:autoSizeTextType="uniform"
+
+        app:layout_constraintEnd_toEndOf="@id/g10"
+        app:layout_constraintTop_toTopOf="@id/lowerPad"
+        app:layout_constraintBottom_toTopOf="@id/padButtons"
+        app:layout_constraintWidth_percent=".08"
+        android:padding="1dp"
+        />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/padButtons"
@@ -163,11 +307,26 @@
         android:text=""
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Hint"
+        app:layout_constraintStart_toStartOf="@id/g0"
         app:layout_constraintTop_toTopOf="@+id/padButtons"
         app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
         />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clearText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Clear Answer"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintWidth_percent=".25"
+
+        android:onClick="showHintsMenu"
+
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/g3"
+        app:layout_constraintTop_toTopOf="@+id/padButtons"
+        app:layout_constraintBottom_toBottomOf="@+id/upperGrid"        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Hint"
@@ -175,14 +334,14 @@
         android:layout_height="0dp"
         android:text="Hint"
         android:autoSizeTextType="uniform"
-        app:layout_constraintWidth_percent=".25"
+        app:layout_constraintWidth_percent=".16"
 
     android:onClick="showHintsMenu"
 
         app:icon="@drawable/star_border"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/g3"
+        app:layout_constraintStart_toStartOf="@+id/g6"
         app:layout_constraintTop_toTopOf="@+id/padButtons"
         app:layout_constraintBottom_toBottomOf="@+id/upperGrid"        />
 
@@ -193,14 +352,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
-        app:layout_constraintWidth_percent=".33"
+        app:layout_constraintWidth_percent=".16"
         android:text="Show Ad"
         android:onClick="showAd"
 
         app:icon="@drawable/local_atm"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/g5"
+        app:layout_constraintStart_toStartOf="@id/g8"
         app:layout_constraintTop_toTopOf="@+id/padButtons"
         app:layout_constraintBottom_toBottomOf="@+id/upperGrid"
         />
@@ -238,12 +397,20 @@
         app:layout_constraintGuide_percent="0.96" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g0"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/g1"
 
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.23" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/g2"
@@ -251,7 +418,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.41" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/g3"
@@ -259,7 +426,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.59" />
+        app:layout_constraintGuide_percent="0.32" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/g4"
@@ -267,7 +434,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.77" />
+        app:layout_constraintGuide_percent="0.41" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/g5"
@@ -275,8 +442,47 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.5" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g6"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g7"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.68" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g8"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.77" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g9"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g10"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choice00"
@@ -288,7 +494,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g1"
+        app:layout_constraintEnd_toEndOf="@id/g2"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -305,7 +511,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g2"
+        app:layout_constraintEnd_toEndOf="@id/g4"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -322,7 +528,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g3"
+        app:layout_constraintEnd_toEndOf="@id/g6"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -339,7 +545,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g4"
+        app:layout_constraintEnd_toEndOf="@id/g8"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -356,7 +562,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g5"
+        app:layout_constraintEnd_toEndOf="@id/g10"
         app:layout_constraintTop_toTopOf="@id/upperGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -373,7 +579,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g1"
+        app:layout_constraintEnd_toEndOf="@id/g2"
         app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -390,7 +596,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g2"
+        app:layout_constraintEnd_toEndOf="@id/g4"
         app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"        app:layout_constraintWidth_percent=".17"
         android:padding="1dp"
@@ -406,7 +612,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g3"
+        app:layout_constraintEnd_toEndOf="@id/g6"
         app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -423,7 +629,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g4"
+        app:layout_constraintEnd_toEndOf="@id/g8"
         app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
@@ -440,7 +646,7 @@
         android:text="\?"
         android:autoSizeTextType="uniform"
 
-        app:layout_constraintEnd_toEndOf="@id/g5"
+        app:layout_constraintEnd_toEndOf="@id/g10"
         app:layout_constraintTop_toTopOf="@id/lowerLowerGrid"
         app:layout_constraintBottom_toTopOf="@id/lowerLowerLowerGrid"
         app:layout_constraintWidth_percent=".17"
